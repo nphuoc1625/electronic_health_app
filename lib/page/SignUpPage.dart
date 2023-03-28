@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blue[900],
       body: SafeArea(
           child: Column(
             children: [
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             Text(
                               'Đăng ký',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
+                                  fontWeight: FontWeight.bold, fontSize: 22),
                             ),
                           ],
                         ),
@@ -144,15 +144,33 @@ class _SignUpPageState extends State<SignUpPage> {
                           ],
                         ),
                         const SizedBox(height: 40,),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            padding: const EdgeInsets.symmetric(horizontal: 132, vertical: 15),
-                          ),
-                          onPressed: () {Navigator.pushNamed(context, SignInPage.routeName);},
-                          child: const Text('Đăng kí', style: TextStyle(fontSize: 20),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned.fill(
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: <Color>[
+                                        Color(0xFF0D47A1),
+                                        Color(0xFF1976D2),
+                                        Color(0xFF42A5F5),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 16),
+                                  textStyle: const TextStyle(fontSize: 20),
+                                ),
+                                onPressed: () {Navigator.pushNamed(context,SignInPage.routeName);},
+                                child: const Text('Đăng ký'),
+                              ),
+                            ],
                           ),
                         ),
                       ],

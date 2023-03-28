@@ -1,3 +1,4 @@
+import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,7 @@ class CategoryHome extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: (){},
+          onPressed: (){Navigator.pushNamed(context, CategoryCertification.routeName);},
           child: Container(
             padding: const EdgeInsets.all(16),
             width: 100,

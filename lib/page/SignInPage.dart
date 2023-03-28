@@ -14,7 +14,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blue[900],
       body: SafeArea(
         child: Column(
           children: [
@@ -56,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
                           Text(
                             'Đăng nhập',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           ),
                         ],
                       ),
@@ -126,22 +126,40 @@ class _SignInPageState extends State<SignInPage> {
                           alignment:Alignment.bottomRight,
                           child: Text("Quên mật khẩu?",style: TextStyle(
                             fontSize: 18,
-                            color: Colors.blueAccent,
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
                           ),
                         ),
                       ),
                       const SizedBox(height: 30,),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 118, vertical: 15),
-                        ),
-                        onPressed: () {Navigator.pushNamed(context, HomePage.routeName);},
-                        child: const Text('Đăng nhập', style: TextStyle(fontSize: 20),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned.fill(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: <Color>[
+                                      Color(0xFF0D47A1),
+                                      Color(0xFF1976D2),
+                                      Color(0xFF42A5F5),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 118, vertical: 16),
+                                textStyle: const TextStyle(fontSize: 20),
+                              ),
+                              onPressed: () {Navigator.pushNamed(context,HomePage.routeName);},
+                              child: const Text('Đăng nhập'),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
@@ -151,12 +169,11 @@ class _SignInPageState extends State<SignInPage> {
                           child: Row(
                             children: [
                               const Text("Bạn chưa có tài khoản?",style: TextStyle(fontSize: 18),),
-                              const SizedBox(width: 5,),
                               TextButton(
                                 onPressed: () {Navigator.pushNamed(context, SignUpPage.routeName);},
-                                child: const Text('Đăng ký ngay', style: TextStyle(fontSize: 18,color: Colors.blueAccent,fontWeight: FontWeight.normal),),
+                                child: const Text('Đăng ký ngay', style: TextStyle(fontSize: 18,color: Colors.blue,fontWeight: FontWeight.normal),),
                               ),
-                            ],
+                            ], 
                           ),
                         ),
                       ),
@@ -167,7 +184,7 @@ class _SignInPageState extends State<SignInPage> {
                           children: const [
                             Text("Hotline",style: TextStyle(fontSize: 18),),
                             SizedBox(width: 5,),
-                            Text("19009095",style: TextStyle(fontSize: 18,color: Colors.blueAccent),),
+                            Text("19009095",style: TextStyle(fontSize: 18,color: Colors.blue),),
                           ],
                         ),
                       ),
