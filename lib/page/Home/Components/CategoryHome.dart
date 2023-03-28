@@ -119,7 +119,19 @@ class CategoryHome extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: (){},
+          onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Cảnh báo'),
+              content: const Text('Không có dữ liệu thoả mãn'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Hủy bỏ'),
+                  child: const Text('Hủy bỏ'),
+                ),
+              ],
+            ),
+          ),
           child: Container(
             padding: const EdgeInsets.all(16),
             width: 100,

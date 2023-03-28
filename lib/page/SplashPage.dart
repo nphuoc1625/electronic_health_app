@@ -8,7 +8,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     Future.delayed(const Duration(seconds: 3),(){
+     Future.delayed(const Duration(seconds: 5),(){
       Navigator.pushNamedAndRemoveUntil(
           context, SignInPage.routeName,(Route<dynamic>route) => false);
     });
@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration:const BoxDecoration(
-              color: Colors.blue
+              color: Color(0xFF0D47A1),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

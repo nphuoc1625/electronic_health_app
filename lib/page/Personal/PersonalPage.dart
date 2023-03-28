@@ -44,10 +44,42 @@ class PersonalPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    TextButton.icon(
+                    TextButton.icon( 
                         icon: const Icon(Icons.logout_outlined,color: Colors.white,),
                         label:const Text('',),
-                        onPressed: (){Navigator.pushNamed(context,SignInPage.routeName);},
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Đăng xuất'),
+                            content: const Text('Bạn thật sự muốn đăng xuất tài khoản'),
+                            actions: <Widget>[
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.blue,
+                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                                    textStyle: const TextStyle(fontSize: 20),
+                                  ),
+                                  onPressed: () => Navigator.pop(context, 'Hủy bỏ',),
+                                  child: const Text('Hủy bỏ',style: TextStyle(color: Colors.white),),
+                                ),
+                              ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                                    textStyle: const TextStyle(fontSize: 20),
+                                  ),
+                                  onPressed: () {Navigator.pushNamed(context,SignInPage.routeName);},
+                                  child: const Text('Đăng xuất',style: TextStyle(color: Colors.white),),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                   ],
                 ),
