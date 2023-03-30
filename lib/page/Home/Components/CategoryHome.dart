@@ -1,5 +1,6 @@
 import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
 import 'package:flutter/material.dart';
 
 class CategoryHome extends StatelessWidget {
@@ -12,8 +13,10 @@ class CategoryHome extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextButton(
-          onPressed: (){Navigator.pushNamed(context, CategoryDeclaration.routeName);},
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, CategoryDeclaration.routeName);
+          },
           child: Container(
             padding: const EdgeInsets.all(16),
             width: 100,
@@ -21,52 +24,38 @@ class CategoryHome extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
                 color: Colors.blue[400]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                            Radius.circular(50)),
-                        child: Container(
-                            padding: const EdgeInsets.all(13),
-                            color: Colors.white,
-                            child: Icon(
-                              Icons.library_books,
-                              color: Colors.blue[400],
-                            ))),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top:20.0),
-                      child: Text(
-                        'Khai báo',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const Text(
-                      'Y tế',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                        padding: const EdgeInsets.all(13),
                         color: Colors.white,
-                      ),
+                        child: Icon(
+                          Icons.library_books,
+                          color: Colors.blue[400],
+                        ))),
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: const Text(
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    'Khai báo \n Y tế',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: Colors.white,
                     ),
-                  ],
+                  ),
                 ),
-
               ],
             ),
           ),
         ),
-        TextButton(
-          onPressed: (){Navigator.pushNamed(context, CategoryCertification.routeName);},
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, CategoryCertification.routeName);
+          },
           child: Container(
             padding: const EdgeInsets.all(16),
             width: 100,
@@ -74,64 +63,38 @@ class CategoryHome extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(25)),
                 color: Colors.green),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                            Radius.circular(50)),
-                        child: Container(
-                            padding: const EdgeInsets.all(13),
-                            color: Colors.white,
-                            child: const Icon(
-                              Icons.add_moderator,
-                              color: Colors.green,
-                            ))),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top:20.0),
-                      child: Text(
-                        'Chứng nhận',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const Text(
-                      'ngừa Covid',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                        padding: const EdgeInsets.all(13),
                         color: Colors.white,
-                      ),
+                        child: const Icon(
+                          Icons.add_moderator,
+                          color: Colors.green,
+                        ))),
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: const Text(
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    'Chứng nhận \n ngừa Covid',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: Colors.white,
                     ),
-                  ],
+                  ),
                 ),
-
               ],
             ),
           ),
         ),
-        TextButton(
-          onPressed: () => showDialog<String>(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              title: const Text('Cảnh báo'),
-              content: const Text('Không có dữ liệu thoả mãn'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'Hủy bỏ'),
-                  child: const Text('Hủy bỏ'),
-                ),
-              ],
-            ),
-          ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, TestResultPage.routeName);
+          },
           child: Container(
             padding: const EdgeInsets.all(16),
             width: 100,
@@ -139,46 +102,30 @@ class CategoryHome extends StatelessWidget {
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(25)),
                 color: Colors.redAccent),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                            Radius.circular(50)),
-                        child: Container(
-                            padding: const EdgeInsets.all(13),
-                            color: Colors.white,
-                            child: const Icon(
-                              Icons.library_books,
-                              color: Colors.redAccent,
-                            ))),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top:20.0),
-                      child: Text(
-                        'Tư vấn',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const Text(
-                      'sức khỏe F0',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                        padding: const EdgeInsets.all(13),
                         color: Colors.white,
-                      ),
+                        child: const Icon(
+                          Icons.remove,
+                          color: Colors.redAccent,
+                        ))),
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: const Text(
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    'Kết quả \n xét nghiệm',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: Colors.white,
                     ),
-                  ],
+                  ),
                 ),
-
               ],
             ),
           ),

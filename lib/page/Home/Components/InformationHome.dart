@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'CovidData.dart';
+
 class InformationHome extends StatelessWidget {
   const InformationHome({
     super.key,
@@ -12,10 +14,9 @@ class InformationHome extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
-            Text('Thông tin y tế',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 20
-              ),
+            Text(
+              'Thông tin y tế',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             Icon(Icons.more_horiz),
           ],
@@ -34,8 +35,7 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Container(
                           padding: const EdgeInsets.all(13),
                           color: Colors.blue,
@@ -46,12 +46,9 @@ class InformationHome extends StatelessWidget {
                   const SizedBox(
                     width: 15,
                   ),
-
                   const Text(
                     'Hộ chiếu vắc-xin',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
@@ -65,8 +62,7 @@ class InformationHome extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-              borderRadius:
-              BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
               color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,8 +70,7 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Container(
                           padding: const EdgeInsets.all(13),
                           color: Colors.orange,
@@ -86,12 +81,9 @@ class InformationHome extends StatelessWidget {
                   const SizedBox(
                     width: 15,
                   ),
-
                   const Text(
                     'Đăng ký tiêm chủng',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
@@ -105,8 +97,7 @@ class InformationHome extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-              borderRadius:
-              BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
               color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,8 +105,7 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Container(
                           padding: const EdgeInsets.all(13),
                           color: Colors.pinkAccent,
@@ -126,12 +116,9 @@ class InformationHome extends StatelessWidget {
                   const SizedBox(
                     width: 15,
                   ),
-
                   const Text(
                     'Đặt lịch khám',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
@@ -145,8 +132,7 @@ class InformationHome extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-              borderRadius:
-              BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
               color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,8 +140,7 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Container(
                           padding: const EdgeInsets.all(13),
                           color: Colors.indigo,
@@ -168,9 +153,7 @@ class InformationHome extends StatelessWidget {
                   ),
                   const Text(
                     'Hồ sơ sức khỏe',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
@@ -184,8 +167,7 @@ class InformationHome extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-              borderRadius:
-              BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
               color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,8 +175,7 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                          Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       child: Container(
                           padding: const EdgeInsets.all(13),
                           color: Colors.green,
@@ -207,9 +188,7 @@ class InformationHome extends StatelessWidget {
                   ),
                   const Text(
                     'Phản ánh tiêm chủng',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ],
               ),
@@ -219,6 +198,46 @@ class InformationHome extends StatelessWidget {
         ),
         const SizedBox(
           height: 12,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, CovidData.routeName,
+                arguments: CovidData.coviddata);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                color: Colors.white),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(15)),
+                        child: Container(
+                            padding: const EdgeInsets.all(13),
+                            color: Colors.red,
+                            child: const Icon(
+                              Icons.bar_chart_outlined,
+                              color: Colors.white,
+                            ))),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    const Text(
+                      'Dữ liệu Covid-19',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                  ],
+                ),
+                const Icon(Icons.more_horiz),
+              ],
+            ),
+          ),
         ),
       ],
     );
