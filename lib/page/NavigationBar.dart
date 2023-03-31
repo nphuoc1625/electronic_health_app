@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 /// This Widget is the main application widget.
 
 class MyNavigationBar extends StatefulWidget {
+  static String routeName="/navigation";
   const MyNavigationBar ({Key? key}) : super(key: key);
 
   @override

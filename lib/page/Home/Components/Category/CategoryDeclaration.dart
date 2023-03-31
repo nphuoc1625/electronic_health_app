@@ -1,4 +1,5 @@
 import 'package:electronic_health_app/page/Home/HomePage.dart';
+import 'package:electronic_health_app/page/NavigationBar.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDeclaration extends StatefulWidget {
@@ -33,7 +34,7 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                   child: TextButton.icon(
                     icon: const Icon(Icons.arrow_back,color: Colors.white,),
                     label:const Text('',),
-                    onPressed: (){Navigator.pushNamed(context,HomePage.routeName);},
+                    onPressed: (){Navigator.pushNamed(context,MyNavigationBar.routeName);},
                   ),
                 ),
                 const Padding(
