@@ -5,8 +5,8 @@ import 'package:electronic_health_app/page/Home/Components/Category/TestResult/t
 import 'package:electronic_health_app/page/NavigationBar.dart';
 import 'package:electronic_health_app/page/Home/HomePage.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
+import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:electronic_health_app/page/SplashPage.dart';
 import 'package:electronic_health_app/page/SignInPage.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        SplashPage.routeName: (context) => const SplashPage(),
+        Splash.routeName: (context) => const Splash(),
         SignInPage.routeName: ((context) => const SignInPage()),
         SignUpPage.routeName: ((context) => const SignUpPage()),
         HomePage.routeName: ((context) => const MyNavigationBar()),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         CovidData.routeName: (context) => const CovidData(),
         TestResultPage.routeName: (context) => const TestResultPage()
       },
-      home: const SplashPage(),
+      home: const Splash(),
     );
   }
 }
