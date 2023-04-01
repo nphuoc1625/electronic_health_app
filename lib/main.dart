@@ -1,22 +1,15 @@
-import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
-import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
+import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
-import 'package:electronic_health_app/page/navigationbar.dart';
-import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
+import 'package:electronic_health_app/page/NavigationBar.dart';
+import 'package:electronic_health_app/page/Home/HomePage.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:electronic_health_app/page/signInPage.dart';
+import 'package:electronic_health_app/page/SignInPage.dart';
 
-import 'firebase_options.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+void main() {
   runApp(const MyApp());
 }
 
@@ -33,14 +26,13 @@ class MyApp extends StatelessWidget {
         Splash.routeName: (context) => const Splash(),
         SignInPage.routeName: ((context) => const SignInPage()),
         SignUpPage.routeName: ((context) => const SignUpPage()),
-        MyNavigationBar.routeName: ((context) => const MyNavigationBar()),
+        HomePage.routeName: ((context) => const MyNavigationBar()),
         CategoryDeclaration.routeName: ((context) =>
             const CategoryDeclaration()),
         CategoryCertification.routeName: ((context) =>
             const CategoryCertification()),
         CovidData.routeName: (context) => const CovidData(),
-        TestResultPage.routeName: (context) => const TestResultPage(),
-        PersonalInfo.routeName: (context) => const PersonalInfo()
+        TestResultPage.routeName: (context) => const TestResultPage()
       },
       home: const Splash(),
     );
