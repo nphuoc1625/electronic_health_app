@@ -26,11 +26,9 @@ class MyApp extends StatelessWidget {
         Splash.routeName: (context) => const Splash(),
         SignInPage.routeName: ((context) => const SignInPage()),
         SignUpPage.routeName: ((context) => const SignUpPage()),
-        HomePage.routeName: ((context) => const MyNavigationBar()),
-        CategoryDeclaration.routeName: ((context) =>
-            const CategoryDeclaration()),
-        CategoryCertification.routeName: ((context) =>
-            const CategoryCertification()),
+        MyNavigationBar.routeName: ((context) => const MyNavigationBar()),
+        CategoryDeclaration.routeName: ((context) => const CategoryDeclaration()),
+        CategoryCertification.routeName: ((context) => const CategoryCertification()),
         CovidData.routeName: (context) => const CovidData(),
         TestResultPage.routeName: (context) => const TestResultPage()
       },

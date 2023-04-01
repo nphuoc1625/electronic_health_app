@@ -12,7 +12,7 @@ class TestResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue[800],
           foregroundColor: Colors.white,
           leading: IconButton(
               onPressed: () {

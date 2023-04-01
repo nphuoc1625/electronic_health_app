@@ -13,7 +13,9 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text("Thông báo"),
+        backgroundColor: Colors.blue[900],
+        title: Center(
+            child: const Text("Thông báo")),
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
