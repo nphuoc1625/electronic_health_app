@@ -19,12 +19,6 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-
-    FirebaseDatabase.instance.ref().child('Members of this project').set([
-      {'name': 'Nguyễn Lâm Ngọc Phước'},
-      {'name': 'Trần Hoài Sơn'},
-      {'name': 'Đỗ Gia Bảo'}
-    ]);
   }
 
   // This widget is the root of your application.
