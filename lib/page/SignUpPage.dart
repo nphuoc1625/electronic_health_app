@@ -1,10 +1,9 @@
 import 'package:electronic_health_app/model/ultilities.dart';
 import 'package:electronic_health_app/model/user.dart';
-import 'package:electronic_health_app/page/SignInPage.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
-  static String routeName="/sign_up";
+  static String routeName = "/sign_up";
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
@@ -12,17 +11,18 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  var email =TextEditingController();
+  var email = TextEditingController();
   final password = TextEditingController();
   final conform = TextEditingController();
 
   final _fromKey = GlobalKey<FormState>();
-  final _passKey =GlobalKey<FormFieldState>();
+  final _passKey = GlobalKey<FormFieldState>();
 
-  @override
   //Khai bao hien thi password
   bool _passwordVisible = false;
   bool _repasswordVisible = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[900],
@@ -31,21 +31,24 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 80),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 80),
                 child: Row(
                   children: [
-                    Image.asset("assets/images/icon.png",height: 100),
+                    Image.asset("assets/images/icon.png", height: 100),
                     Column(
-                      children: const[
-                        Text("SSKĐT",style: TextStyle(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                        ),),
-                        Text("Sổ sức khỏe điện tử",style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white
-                        ),),
+                      children: const [
+                        Text(
+                          "SSKĐT",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "Sổ sức khỏe điện tử",
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
                       ],
                     )
                   ],
@@ -54,8 +57,8 @@ class _SignUpPageState extends State<SignUpPage> {
               Expanded(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(50), topRight: Radius.circular(50)
-                  ),
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
                   child: Container(
                     padding: const EdgeInsets.all(30),
                     color: Colors.grey[200],
@@ -64,8 +67,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const[
-                              SizedBox(height: 10,),
+                            children: const [
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text(
                                 'Đăng ký',
                                 style: TextStyle(
@@ -79,15 +84,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                 child: Align(
-                                  alignment:Alignment.topLeft,
-                                  child: Text("Nhập email",style: TextStyle(fontSize: 18)),
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Nhập email",
+                                      style: TextStyle(fontSize: 18)),
                                 ),
                               ),
                               TextFormField(
                                 controller: email,
                                 keyboardType: TextInputType.emailAddress,
-                                decoration:const InputDecoration(
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                decoration: const InputDecoration(
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
                                   fillColor: Colors.white,
                                   filled: true,
                                   border: OutlineInputBorder(
@@ -101,11 +108,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   hintText: "Nhập nội dung",
                                 ),
-                                validator: (emailString){
-                                  return Utilities.validateEmail(emailString!);},
-                                onSaved: (value){
+                                validator: (emailString) {
+                                  return Utilities.validateEmail(emailString!);
+                                },
+                                onSaved: (value) {
                                   setState(() {
-                                    email.text=value!;
+                                    email.text = value!;
                                   });
                                 },
                               ),
@@ -117,8 +125,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                 child: Align(
-                                  alignment:Alignment.topLeft,
-                                  child: Text("Nhập mật khẩu",style: TextStyle(fontSize: 18)),
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Nhập mật khẩu",
+                                      style: TextStyle(fontSize: 18)),
                                 ),
                               ),
                               TextFormField(
@@ -126,11 +135,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 controller: password,
                                 obscureText: !_passwordVisible,
                                 decoration: InputDecoration(
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
                                   fillColor: Colors.white,
                                   filled: true,
-                                  border:  OutlineInputBorder(
-                                    borderSide:  BorderSide(
+                                  border: const OutlineInputBorder(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -155,11 +165,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                     },
                                   ),
                                 ),
-                                validator: (passwordKey){
-                                  return Utilities.validatePassword(passwordKey!);
-                                  },
-
-
+                                validator: (passwordKey) {
+                                  return Utilities.validatePassword(
+                                      passwordKey!);
+                                },
                               ),
                             ],
                           ),
@@ -169,18 +178,20 @@ class _SignUpPageState extends State<SignUpPage> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                 child: Align(
-                                  alignment:Alignment.topLeft,
-                                  child: Text("Nhập lại mật khẩu",style: TextStyle(fontSize: 18)),
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Nhập lại mật khẩu",
+                                      style: TextStyle(fontSize: 18)),
                                 ),
                               ),
                               TextFormField(
                                 controller: conform,
                                 obscureText: !_repasswordVisible,
                                 decoration: InputDecoration(
-                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.always,
                                   fillColor: Colors.white,
                                   filled: true,
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
@@ -201,25 +212,28 @@ class _SignUpPageState extends State<SignUpPage> {
                                     onPressed: () {
                                       // Update the state i.e. toogle the state of passwordVisible variable
                                       setState(() {
-                                        _repasswordVisible = !_repasswordVisible;
+                                        _repasswordVisible =
+                                            !_repasswordVisible;
                                       });
                                     },
                                   ),
                                 ),
-
-                                validator:(conformPassword){
-                                  var pass =_passKey.currentState?.value;
-                                  return Utilities.conformPassword(conformPassword!,pass);
+                                validator: (conformPassword) {
+                                  var pass = _passKey.currentState?.value;
+                                  return Utilities.conformPassword(
+                                      conformPassword!, pass);
                                 },
-                                onSaved: (value){
+                                onSaved: (value) {
                                   setState(() {
-                                    conform.text =value!;
+                                    conform.text = value!;
                                   });
                                 },
                               ),
                             ],
                           ),
-                          const SizedBox(height: 40,),
+                          const SizedBox(
+                            height: 40,
+                          ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Stack(
@@ -240,13 +254,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(horizontal: 130, vertical: 16),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 130, vertical: 16),
                                     textStyle: const TextStyle(fontSize: 20),
                                   ),
                                   onPressed: () {
-                                    if(
-                                    _fromKey.currentState!.validate()){
-                                      Navigator.pop(context, User(username: email.text,password: conform.text));
+                                    if (_fromKey.currentState!.validate()) {
+                                      Navigator.pop(
+                                          context,
+                                          User(
+                                              username: email.text,
+                                              password: conform.text));
                                     }
                                   },
                                   child: const Text('Đăng ký'),
@@ -261,9 +279,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               )
             ],
-          )
-      ),
+          )),
     );
-
   }
 }

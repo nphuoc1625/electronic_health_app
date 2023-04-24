@@ -1,12 +1,17 @@
-import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
+import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/mynotification.dart';
 
-class NotificationPage extends StatelessWidget {
-  NotificationPage({Key? key}) : super(key: key);
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({Key? key}) : super(key: key);
 
-  List<MyNotification> notifications = [MyNotification()];
+  @override
+  State<NotificationPage> createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
+  final List<MyNotification> notifications = [];
 
   @override
   Widget build(BuildContext context) {

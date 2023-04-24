@@ -1,6 +1,5 @@
 import 'package:electronic_health_app/model/user.dart';
-import 'package:electronic_health_app/page/Home/HomePage.dart';
-import 'package:electronic_health_app/page/NavigationBar.dart';
+import 'package:electronic_health_app/page/navigationbar.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:electronic_health_app/model/ultilities.dart';
 
 class SignInPage extends StatefulWidget {
-  static String routeName="/sign_in";
+  static String routeName = "/sign_in";
   const SignInPage({Key? key}) : super(key: key);
 
   @override
@@ -16,38 +15,36 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
   final _formKey = GlobalKey<FormState>();
   bool _value = false;
 
   // ignore: prefer_typing_uninitialized_variables
   var prefs;
-  final username =TextEditingController();
-  final password =TextEditingController();
+  final username = TextEditingController();
+  final password = TextEditingController();
 
   FToast? fToast;
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    fToast =FToast();
+    fToast = FToast();
     fToast?.init(context);
     _getData();
   }
 
-  _getData() async{
-    prefs =await SharedPreferences.getInstance();
-    if(!prefs.getString('username')?.isEmpty){
-      username.text=prefs.getString('username');
-      password.text=prefs.getString('password');
-      _value =prefs.getBool('check');
+  _getData() async {
+    prefs = await SharedPreferences.getInstance();
+    if (!prefs.getString('username')?.isEmpty) {
+      username.text = prefs.getString('username');
+      password.text = prefs.getString('password');
+      _value = prefs.getBool('check');
     }
   }
 
-
-  @override
-
   //Khai bao hien thi password
   bool _passwordVisible = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -59,21 +56,24 @@ class _SignInPageState extends State<SignInPage> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 80),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 80),
                 child: Row(
                   children: [
-                    Image.asset("assets/images/icon.png",height: 100),
+                    Image.asset("assets/images/icon.png", height: 100),
                     Column(
-                      children: const[
-                        Text("SSKĐT",style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                        ),),
-                        Text("Sổ sức khỏe điện tử",style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white
-                        ),),
+                      children: const [
+                        Text(
+                          "SSKĐT",
+                          style: TextStyle(
+                              fontSize: 40,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "Sổ sức khỏe điện tử",
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
                       ],
                     )
                   ],
@@ -82,8 +82,8 @@ class _SignInPageState extends State<SignInPage> {
               Expanded(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(50), topRight: Radius.circular(50)
-                  ),
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
                   child: Container(
                     padding: const EdgeInsets.all(30),
                     color: Colors.grey[200],
@@ -92,8 +92,10 @@ class _SignInPageState extends State<SignInPage> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const[
-                              SizedBox(height: 10,),
+                            children: const [
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text(
                                 'Đăng nhập',
                                 style: TextStyle(
@@ -107,26 +109,27 @@ class _SignInPageState extends State<SignInPage> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                 child: Align(
-                                  alignment:Alignment.topLeft,
-                                  child: Text("Email",style: TextStyle(fontSize: 18)),
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Email",
+                                      style: TextStyle(fontSize: 18)),
                                 ),
                               ),
                               TextFormField(
-                                validator: (value){
+                                validator: (value) {
                                   return Utilities.validateEmail(value!);
                                 },
                                 // ignore: no_leading_underscores_for_local_identifiers
-                                onSaved: (_value){
+                                onSaved: (_value) {
                                   setState(() {
-                                    username.text=_value!;
+                                    username.text = _value!;
                                   });
                                 },
                                 controller: username,
                                 decoration: const InputDecoration(
                                   fillColor: Colors.white,
                                   filled: true,
-                                  border:  OutlineInputBorder(
-                                    borderSide:  BorderSide(
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -135,7 +138,10 @@ class _SignInPageState extends State<SignInPage> {
                                     ),
                                   ),
                                   hintText: "Nhập nội dung",
-                                  prefixIcon: Icon(Icons.person,color: Colors.blue,),
+                                  prefixIcon: Icon(
+                                    Icons.person,
+                                    color: Colors.blue,
+                                  ),
                                 ),
                               ),
                             ],
@@ -146,35 +152,34 @@ class _SignInPageState extends State<SignInPage> {
                               const Padding(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
                                 child: Align(
-                                  alignment:Alignment.topLeft,
-                                  child: Text("Mật khẩu",style: TextStyle(fontSize: 18)),
+                                  alignment: Alignment.topLeft,
+                                  child: Text("Mật khẩu",
+                                      style: TextStyle(fontSize: 18)),
                                 ),
                               ),
                               TextFormField(
                                 controller: password,
-                                validator: (value){
+                                validator: (value) {
                                   return Utilities.validatePassword(value!);
                                 },
                                 obscureText: !_passwordVisible,
                                 decoration: InputDecoration(
-
                                   fillColor: Colors.white,
                                   filled: true,
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.all(
-                                       Radius.circular(10.0),
+                                      Radius.circular(10.0),
                                     ),
-
                                   ),
-
                                   hintText: "Nhập mật khẩu",
-
-
-                                  prefixIcon: Icon(Icons.lock_outline_rounded,color: Colors.blue,),
+                                  prefixIcon: const Icon(
+                                    Icons.lock_outline_rounded,
+                                    color: Colors.blue,
+                                  ),
                                   suffixIcon: IconButton(
                                     icon: Icon(
                                       // Based on passwordVisible state choose the icon
@@ -189,22 +194,22 @@ class _SignInPageState extends State<SignInPage> {
                                         _passwordVisible = !_passwordVisible;
                                       });
                                     },
-                                  ),),
-
-
+                                  ),
                                 ),
-
+                              ),
                             ],
                           ),
                           const Padding(
                             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                             child: Align(
-                              alignment:Alignment.bottomRight,
-                              child: Text("Quên mật khẩu?",style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              alignment: Alignment.bottomRight,
+                              child: Text(
+                                "Quên mật khẩu?",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -226,7 +231,9 @@ class _SignInPageState extends State<SignInPage> {
                           //     ),
                           //   ],
                           // ),
-                          const SizedBox(height: 30,),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Stack(
@@ -247,21 +254,25 @@ class _SignInPageState extends State<SignInPage> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(horizontal: 118, vertical: 16),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 118, vertical: 16),
                                     textStyle: const TextStyle(fontSize: 20),
                                   ),
-                                  onPressed: () async{
-                                    if(_value){
-                                      prefs = await SharedPreferences.getInstance();
-                                      prefs.setString("username", username.text);
-                                      prefs.setString("password", password.text);
-                                      prefs.setBool('check',_value);
-                                    }
-                                    else{
+                                  onPressed: () async {
+                                    if (_value) {
+                                      prefs =
+                                          await SharedPreferences.getInstance();
+                                      prefs.setString(
+                                          "username", username.text);
+                                      prefs.setString(
+                                          "password", password.text);
+                                      prefs.setBool('check', _value);
+                                    } else {
                                       prefs.remove("check");
                                     }
                                     // ignore: use_build_context_synchronously
-                                    Navigator.pushNamed(context, MyNavigationBar.routeName);
+                                    Navigator.pushNamed(
+                                        context, MyNavigationBar.routeName);
                                   },
                                   child: const Text('Đăng nhập'),
                                 ),
@@ -274,23 +285,28 @@ class _SignInPageState extends State<SignInPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text("Bạn chưa có tài khoản?",style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),),
-
-                                GestureDetector(
-                                  onTap: () async{
-                                    final result = await Navigator.pushNamed(context, SignUpPage.routeName);
-                                    User? user = result as User?;
-                                    username.text=user!.username;
-                                  },
-                                  child: const Text("Đăng ký ngay",style: TextStyle(
-                                    color: Colors.blue,
+                                const Text(
+                                  "Bạn chưa có tài khoản?",
+                                  style: TextStyle(
+                                    color: Colors.black,
                                     fontSize: 18,
-                                  ),),
+                                  ),
                                 ),
-
+                                GestureDetector(
+                                  onTap: () async {
+                                    final result = await Navigator.pushNamed(
+                                        context, SignUpPage.routeName);
+                                    User? user = result as User?;
+                                    username.text = user!.username;
+                                  },
+                                  child: const Text(
+                                    "Đăng ký ngay",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -299,9 +315,18 @@ class _SignInPageState extends State<SignInPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Text("Hotline",style: TextStyle(fontSize: 18),),
-                                SizedBox(width: 5,),
-                                Text("19009095",style: TextStyle(fontSize: 18,color: Colors.blue),),
+                                Text(
+                                  "Hotline",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "19009095",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.blue),
+                                ),
                               ],
                             ),
                           ),
@@ -316,6 +341,5 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-
   }
 }

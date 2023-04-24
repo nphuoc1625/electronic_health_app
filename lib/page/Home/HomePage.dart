@@ -1,10 +1,10 @@
-import 'package:electronic_health_app/page/Home/Components/CategoryHome.dart';
-import 'package:electronic_health_app/page/Home/Components/InformationHome.dart';
-import 'package:electronic_health_app/page/Home/Components/HeaderHome.dart';
+import 'package:electronic_health_app/page/Home/Components/category_home.dart';
+import 'package:electronic_health_app/page/Home/Components/information_home.dart';
+import 'package:electronic_health_app/page/Home/Components/header_home.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  static String routeName="/home_page";
+  static String routeName = "/home_page";
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -53,5 +53,3 @@ class _HomepageState extends State<HomePage> {
     );
   }
 }
-
-

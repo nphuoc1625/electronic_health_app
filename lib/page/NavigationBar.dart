@@ -1,4 +1,4 @@
-import 'package:electronic_health_app/page/Calendar/Calendar.dart';
+import 'package:electronic_health_app/page/Calendar/calendar.dart';
 import 'package:electronic_health_app/page/Home/HomePage.dart';
 import 'package:electronic_health_app/page/Notification/Notification.dart';
 import 'package:electronic_health_app/page/Personal/PersonalPage.dart';

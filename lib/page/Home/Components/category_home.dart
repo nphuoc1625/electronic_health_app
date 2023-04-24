@@ -1,5 +1,5 @@
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
 import 'package:flutter/material.dart';
 

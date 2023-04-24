@@ -1,20 +1,24 @@
-import 'package:electronic_health_app/page/Home/HomePage.dart';
-import 'package:electronic_health_app/page/NavigationBar.dart';
+import 'package:electronic_health_app/page/Home/homepage.dart';
+import 'package:electronic_health_app/page/navigationbar.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDeclaration extends StatefulWidget {
-  static String routeName="/declaration";
+  static String routeName = "/declaration";
   const CategoryDeclaration({Key? key}) : super(key: key);
 
   @override
   State<CategoryDeclaration> createState() => _CategoryDeclarationState();
 }
+
 // ignore: constant_identifier_names
 enum SingingCharacter { No, Yes }
+
 // ignore: constant_identifier_names
 enum SingingCharacter1 { No1, Yes1 }
+
 // ignore: constant_identifier_names
 enum SingingCharacter2 { No2, Yes2 }
+
 class _CategoryDeclarationState extends State<CategoryDeclaration> {
   SingingCharacter? _character = SingingCharacter.No;
   SingingCharacter1? _character1 = SingingCharacter1.No1;
@@ -30,30 +34,42 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
             Row(
               children: [
                 Align(
-                  alignment:Alignment.topLeft,
+                  alignment: Alignment.topLeft,
                   child: TextButton.icon(
-                    icon: const Icon(Icons.arrow_back,color: Colors.white,),
-                    label:const Text('',),
-                    onPressed: (){Navigator.pushNamed(context,MyNavigationBar.routeName);},
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                    label: const Text(
+                      '',
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, MyNavigationBar.routeName);
+                    },
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.fromLTRB(70,8,0,0),
+                  padding: EdgeInsets.fromLTRB(70, 8, 0, 0),
                   child: Align(
-                    alignment:Alignment.topCenter,
-                    child: Text("Khai báo y tế",style: TextStyle(fontSize: 22,color: Colors.white),),
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      "Khai báo y tế",
+                      style: TextStyle(fontSize: 22, color: Colors.white),
+                    ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             Expanded(
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15)),
                 child: Container(
-                  padding: const EdgeInsets.only(top:30),
+                  padding: const EdgeInsets.only(top: 30),
                   color: Colors.grey[200],
                   child: Column(
                     children: [
@@ -77,8 +93,11 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố,'
-                                  'quốc gia/vùng lãnh thổ nào',style: TextStyle(fontSize: 15),),
+                              const Text(
+                                'Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố,'
+                                'quốc gia/vùng lãnh thổ nào',
+                                style: TextStyle(fontSize: 15),
+                              ),
                               const SizedBox(height: 15),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -90,9 +109,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character,
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
-                                            _character =value;
+                                            _character = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Không')
                                     ],
                                   ),
@@ -104,9 +124,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character,
                                         onChanged: (SingingCharacter? value) {
                                           setState(() {
-                                            _character =value;
+                                            _character = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Có')
                                     ],
                                   ),
@@ -136,9 +157,12 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện ít nhất'
-                                  '1 trong các dấu hiệu: sốt, ho, khó thở, viêm phổi, đau'
-                                  'họng, mệt mỏi không?',style: TextStyle(fontSize: 15),),
+                              const Text(
+                                'Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện ít nhất'
+                                '1 trong các dấu hiệu: sốt, ho, khó thở, viêm phổi, đau'
+                                'họng, mệt mỏi không?',
+                                style: TextStyle(fontSize: 15),
+                              ),
                               const SizedBox(height: 15),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -150,9 +174,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character1,
                                         onChanged: (SingingCharacter1? value) {
                                           setState(() {
-                                            _character1 =value;
+                                            _character1 = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Không')
                                     ],
                                   ),
@@ -164,9 +189,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character1,
                                         onChanged: (SingingCharacter1? value) {
                                           setState(() {
-                                            _character1 =value;
+                                            _character1 = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Có')
                                     ],
                                   ),
@@ -196,9 +222,12 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('Trong vòng 14 ngày qua, Anh/Chị có tiếp xúc với người bệnh'
-                                  'hoặc nghi ngờ mắc bệnh COVID-19, người từ nước ngoài có bệnh'
-                                  'COVID 19',style: TextStyle(fontSize: 15),),
+                              const Text(
+                                'Trong vòng 14 ngày qua, Anh/Chị có tiếp xúc với người bệnh'
+                                'hoặc nghi ngờ mắc bệnh COVID-19, người từ nước ngoài có bệnh'
+                                'COVID 19',
+                                style: TextStyle(fontSize: 15),
+                              ),
                               const SizedBox(height: 15),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -210,9 +239,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character2,
                                         onChanged: (SingingCharacter2? value) {
                                           setState(() {
-                                            _character2 =value;
+                                            _character2 = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Không')
                                     ],
                                   ),
@@ -224,9 +254,10 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                                         groupValue: _character2,
                                         onChanged: (SingingCharacter2? value) {
                                           setState(() {
-                                            _character2 =value;
+                                            _character2 = value;
                                           });
-                                        },),
+                                        },
+                                      ),
                                       const Text('Có')
                                     ],
                                   ),
@@ -236,7 +267,9 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 15,),
+                      const SizedBox(
+                        height: 15,
+                      ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: Stack(
@@ -257,10 +290,14 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                             TextButton(
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 16),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 100, vertical: 16),
                                 textStyle: const TextStyle(fontSize: 20),
                               ),
-                              onPressed: () {Navigator.pushNamed(context,HomePage.routeName);},
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, HomePage.routeName);
+                              },
                               child: const Text('Gửi tờ khai'),
                             ),
                           ],
@@ -271,7 +308,6 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                 ),
               ),
             )
-
           ],
         ),
       ),

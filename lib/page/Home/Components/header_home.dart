@@ -17,13 +17,15 @@ class HeaderHome extends StatelessWidget {
               width: 60.0,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(40)),
-                child:Image.asset(
+                child: Image.asset(
                   'assets/images/icons.png',
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            const SizedBox(width: 10,),
+            const SizedBox(
+              width: 10,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
@@ -37,7 +39,6 @@ class HeaderHome extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Text(
                   'Trần Hoài Sơn',
                   style: TextStyle(

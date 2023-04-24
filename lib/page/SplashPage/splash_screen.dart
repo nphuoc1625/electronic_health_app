@@ -1,12 +1,11 @@
-import 'package:electronic_health_app/page/SignInPage.dart';
+import 'package:electronic_health_app/page/signInPage.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:electronic_health_app/page/SplashPage/page.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
 class Splash extends StatefulWidget {
-  static String routeName="/splash";
+  static String routeName = "/splash";
   const Splash({super.key});
 
   @override
@@ -14,7 +13,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   // This widget is the root of your application.
   @override
@@ -30,17 +29,17 @@ class _SplashState extends State<Splash> {
                 Page1(
                   "Bảo vệ sức khỏe tại nhà ",
                   "assets/images/icons.png",
-                    Color(0xFF0D47A1),
+                  Color(0xFF0D47A1),
                 ),
                 Page1(
                   "Khai báo y tế nhanh chóng",
                   "assets/images/splash1.png",
-                    Color(0xFF0D47A1),
+                  Color(0xFF0D47A1),
                 ),
                 Page1(
                   "Cập nhật thông tin chính xác",
                   "assets/images/splash.png",
-                    Color(0xFF0D47A1),
+                  Color(0xFF0D47A1),
                 ),
               ],
             ),
@@ -74,16 +73,22 @@ class _SplashState extends State<Splash> {
                           TextButton(
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 16),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 90, vertical: 16),
                               textStyle: const TextStyle(fontSize: 18),
                             ),
-                            onPressed: () {Navigator.pushNamed(context,SignInPage.routeName);},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, SignInPage.routeName);
+                            },
                             child: const Text('Đăng nhập'),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Stack(
@@ -103,16 +108,19 @@ class _SplashState extends State<Splash> {
                           TextButton(
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(horizontal: 102, vertical: 16),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 102, vertical: 16),
                               textStyle: const TextStyle(fontSize: 18),
                             ),
-                            onPressed: () {Navigator.pushNamed(context,SignUpPage.routeName);},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, SignUpPage.routeName);
+                            },
                             child: const Text('Đăng ký'),
                           ),
                         ],
                       ),
                     ),
-
                     const SizedBox(
                       height: 30,
                     )

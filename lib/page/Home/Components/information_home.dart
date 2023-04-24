@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'CovidData.dart';
+import 'coviddata.dart';
 
 class InformationHome extends StatelessWidget {
   const InformationHome({
