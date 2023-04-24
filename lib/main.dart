@@ -6,10 +6,16 @@ import 'package:electronic_health_app/page/navigationbar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:electronic_health_app/page/signInPage.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

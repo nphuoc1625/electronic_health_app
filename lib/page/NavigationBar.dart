@@ -1,7 +1,7 @@
 import 'package:electronic_health_app/page/Calendar/calendar.dart';
-import 'package:electronic_health_app/page/Home/HomePage.dart';
-import 'package:electronic_health_app/page/Notification/Notification.dart';
-import 'package:electronic_health_app/page/Personal/PersonalPage.dart';
+import 'package:electronic_health_app/page/Home/homepage.dart';
+import 'package:electronic_health_app/page/Notification/notification.dart';
+import 'package:electronic_health_app/page/Personal/personal_page.dart';
 import 'package:flutter/material.dart';
 
 /// This Widget is the main application widget.
@@ -20,7 +20,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   final List<Widget> _widgetOptions = [
     const HomePage(),
     const CalendarPage(),
-    NotificationPage(),
+    const NotificationPage(),
     const PersonalPage(),
   ];
 

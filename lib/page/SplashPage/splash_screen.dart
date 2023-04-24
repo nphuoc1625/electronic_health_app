@@ -1,6 +1,7 @@
 import 'package:electronic_health_app/page/signInPage.dart';
 import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:electronic_health_app/page/SplashPage/page.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -14,6 +15,17 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   final PageController _controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseDatabase.instance.ref().child('Members of this project').set([
+      {'name': 'Nguyễn Lâm Ngọc Phước'},
+      {'name': 'Trần Hoài Sơn'},
+      {'name': 'Đỗ Gia Bảo'}
+    ]);
+  }
 
   // This widget is the root of your application.
   @override
