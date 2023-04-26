@@ -62,7 +62,7 @@ class PersonalPage extends StatelessWidget {
                   icon: const Icon(Icons.logout))
             ]),
         body: Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.only(top: 40),
             child: Column(children: [
               const MyQRCode(),
               Expanded(
@@ -176,6 +176,35 @@ class PersonalPage extends StatelessWidget {
                                                 color: Colors.black, size: 30)
                                           ]),
                                       onPressed: () {},
+                                    ),
+                                    divider(context),
+                                    TextButton(
+                                      child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+
+                                          children: [
+                                            Row(children: const [
+                                              Padding(
+                                                padding:
+                                                EdgeInsets.only(right: 8),
+                                                child: Icon(Icons.logout,
+                                                    color: Colors.black,
+                                                    size: 30),
+                                              ),
+
+                                              Text('Đăng xuất',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 18))
+                                            ]),
+                                            const Icon(Icons.navigate_next,
+                                                color: Colors.black, size: 30)
+                                          ]),
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, SignInPage.routeName);
+                                      },
                                     )
                                   ])))))
             ])));

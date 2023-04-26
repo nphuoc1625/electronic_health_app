@@ -8,14 +8,11 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top:50.0),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            children: const [
-              SignInForm(),
-            ],
-          ),
+        padding: const EdgeInsets.only(top: 50.0),
+        child: Column(
+          children: const [
+            SignInForm(),
+          ],
         ),
       ),
     );

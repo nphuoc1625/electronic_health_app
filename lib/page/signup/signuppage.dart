@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './components/body.dart';
+import 'package:electronic_health_app/page/signup/components/body.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});

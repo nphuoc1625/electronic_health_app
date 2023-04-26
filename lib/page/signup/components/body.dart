@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './signup_form.dart';
+import 'package:electronic_health_app/page/signup/components/signup_form.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});

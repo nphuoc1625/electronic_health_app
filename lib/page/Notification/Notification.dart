@@ -1,8 +1,10 @@
+// ignore: file_names
 import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/mynotification.dart';
 
+// ignore: must_be_immutable
 class NotificationPage extends StatelessWidget {
   NotificationPage({Key? key}) : super(key: key);
 
@@ -13,7 +15,10 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text("Thông báo"),
+        backgroundColor: Colors.blue[900],
+        title: const Center(
+            child: Text("Thông báo")
+        ),
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(

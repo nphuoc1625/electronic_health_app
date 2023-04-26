@@ -20,7 +20,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   final List<Widget> _widgetOptions = [
     const HomePage(),
     const CalendarPage(),
-     NotificationPage(),
+    NotificationPage(),
     const PersonalPage(),
   ];
 
