@@ -86,7 +86,7 @@ class _SignInFormState extends State<SignInForm> {
                     ),
                     Text(
                       "Sổ sức khỏe điện tử",
-                      style: TextStyle(fontSize: 16, color: Colors.blueAccent),
+                      style: TextStyle(fontSize: 16, color: Colors.blue),
                     ),
                   ],
                 )

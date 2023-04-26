@@ -35,68 +35,69 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: const Icon(
-                  Icons.home,
-                  color: Colors.black,
-                  size: 30,
-                ),
-                activeIcon: Icon(
-                  Icons.home,
-                  color: Colors.blue[600],
-                  size: 30,
-                ),
-                label: ("Trang chủ"),
-                backgroundColor: Colors.white),
-            BottomNavigationBarItem(
-                icon: const Icon(
-                  Icons.calendar_month,
-                  color: Colors.black,
-                  size: 30,
-                ),
-                activeIcon: Icon(
-                  Icons.calendar_month,
-                  color: Colors.blue[600],
-                  size: 30,
-                ),
-                label: ("Lịch hẹn"),
-                backgroundColor: Colors.white),
-            BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
               icon: const Icon(
-                Icons.notifications,
+                Icons.home,
                 color: Colors.black,
                 size: 30,
               ),
               activeIcon: Icon(
-                Icons.notifications,
+                Icons.home,
                 color: Colors.blue[600],
                 size: 30,
               ),
-              label: ("Thông báo"),
-              backgroundColor: Colors.white,
-            ),
-            BottomNavigationBarItem(
+              label: ("Trang chủ"),
+              backgroundColor: Colors.white),
+          BottomNavigationBarItem(
               icon: const Icon(
-                Icons.person,
+                Icons.calendar_month,
                 color: Colors.black,
                 size: 30,
               ),
               activeIcon: Icon(
-                Icons.person,
+                Icons.calendar_month,
                 color: Colors.blue[600],
                 size: 30,
               ),
-              label: ("Cá nhân"),
-              backgroundColor: Colors.white,
+              label: ("Lịch hẹn"),
+              backgroundColor: Colors.white),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.black,
+              size: 30,
             ),
-          ],
-          type: BottomNavigationBarType.shifting,
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue[600],
-          iconSize: 40,
-          onTap: _onItemTapped,
-          elevation: 5),
+            activeIcon: Icon(
+              Icons.notifications,
+              color: Colors.blue[600],
+              size: 30,
+            ),
+            label: ("Thông báo"),
+            backgroundColor: Colors.white,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.person,
+              color: Colors.black,
+              size: 30,
+            ),
+            activeIcon: Icon(
+              Icons.person,
+              color: Colors.blue[600],
+              size: 30,
+            ),
+            label: ("Cá nhân"),
+            backgroundColor: Colors.white,
+          ),
+        ],
+        type: BottomNavigationBarType.shifting,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue[600],
+        iconSize: 40,
+        onTap: _onItemTapped,
+        elevation: 5,
+      ),
     );
   }
 }

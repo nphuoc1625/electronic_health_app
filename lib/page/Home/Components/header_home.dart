@@ -55,7 +55,8 @@ class HeaderHome extends StatelessWidget {
           padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(15)),
-              color: Colors.blue[600]),
+              color: Colors.blue[600]
+          ),
           child: const Icon(
             Icons.notifications,
             color: Colors.white,

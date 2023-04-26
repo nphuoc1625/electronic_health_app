@@ -24,7 +24,8 @@ class SignUpPage extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       body: const SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: Body()),
+          child: Body(),
+      ),
     );
   }
 }

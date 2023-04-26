@@ -128,7 +128,7 @@ class _SplashState extends State<Splash> {
                     ),
                     const SizedBox(
                       height: 30,
-                    )
+                    ),
                   ],
                 ),
               ),

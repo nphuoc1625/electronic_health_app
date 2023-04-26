@@ -4,7 +4,6 @@ import 'package:electronic_health_app/page/Home/Components/header_home.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  static String routeName = "/home_page";
   const HomePage({Key? key}) : super(key: key);
 
   @override

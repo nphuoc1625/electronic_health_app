@@ -20,10 +20,10 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: ListView(
-      children: [
-        UnconstrainedBox(
-          child: ClipRRect(
+      child: ListView(
+        children: [
+          UnconstrainedBox(
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(75),
               child: FittedBox(
                 fit: BoxFit.fill,
@@ -39,57 +39,61 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                     color: Colors.grey,
                   ),
                 ),
-              )),
-        ),
-        requiredText("Họ và tên"),
-        TextFormField(
-          decoration: inputDecoration(hintText: "Họ và tên"),
-        ),
-        requiredText("Ngày tháng năm sinh"),
-        TextFormField(
-          decoration: inputDecoration(
-              icon: const Icon(Icons.calendar_month), hintText: "2000-01-01"),
-        ),
-        requiredText("Giới tính"),
-        sexSelections(),
-        requiredText("Số điện thoại"),
-        TextField(
-          decoration: inputDecoration(hintText: ""),
-        ),
-        requiredText("Số hộ chiếu/CMND/CCCD"),
-        TextField(
-          decoration: inputDecoration(),
-        ),
-        requiredText("Email"),
-        TextField(
-          decoration: inputDecoration(hintText: "vidu@gmail.com"),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Divider(
-            thickness: 3,
-            color: Colors.black,
+              ),
+            ),
           ),
-        ),
-        requiredText("Tỉnh/Thành phố"),
-        TextField(
-          decoration: inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
-        ),
-        requiredText("Quận/Huyện"),
-        TextField(
-          decoration: inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
-        ),
-        requiredText("Phường/Xã"),
-        TextField(
-          decoration: inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
-        ),
-        requiredText("Thôn/Xóm/Số nhà"),
-        TextField(
-          decoration: inputDecoration(),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: ElevatedButton(
+          requiredText("Họ và tên"),
+          TextFormField(
+            decoration: inputDecoration(hintText: "Họ và tên"),
+          ),
+          requiredText("Ngày tháng năm sinh"),
+          TextFormField(
+            decoration: inputDecoration(
+                icon: const Icon(Icons.calendar_month), hintText: "2000-01-01"),
+          ),
+          requiredText("Giới tính"),
+          sexSelections(),
+          requiredText("Số điện thoại"),
+          TextField(
+            decoration: inputDecoration(hintText: ""),
+          ),
+          requiredText("Số hộ chiếu/CMND/CCCD"),
+          TextField(
+            decoration: inputDecoration(),
+          ),
+          requiredText("Email"),
+          TextField(
+            decoration: inputDecoration(hintText: "vidu@gmail.com"),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Divider(
+              thickness: 3,
+              color: Colors.black,
+            ),
+          ),
+          requiredText("Tỉnh/Thành phố"),
+          TextField(
+            decoration:
+                inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
+          ),
+          requiredText("Quận/Huyện"),
+          TextField(
+            decoration:
+                inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
+          ),
+          requiredText("Phường/Xã"),
+          TextField(
+            decoration:
+                inputDecoration(icon: const Icon(Icons.arrow_drop_down)),
+          ),
+          requiredText("Thôn/Xóm/Số nhà"),
+          TextField(
+            decoration: inputDecoration(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.blue[900]),
                   minimumSize:
@@ -100,10 +104,12 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
               child: const Text(
                 "Lưu thông tin",
                 style: TextStyle(fontSize: 18),
-              )),
-        )
-      ],
-    ));
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget sexSelections() {
@@ -149,20 +155,23 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
 
   InputDecoration inputDecoration({String? hintText, Icon? icon}) {
     return InputDecoration(
-        hintText: hintText,
-        suffixIcon: icon,
-        iconColor: Colors.blue,
-        contentPadding: const EdgeInsets.all(8),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)));
+      hintText: hintText,
+      suffixIcon: icon,
+      iconColor: Colors.blue,
+      contentPadding: const EdgeInsets.all(8),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+    );
   }
 
   Widget requiredText(String value) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 14, 0, 8),
-      child: Row(children: [
-        Text(value, style: const TextStyle(fontSize: 18)),
-        const Text(" *", style: TextStyle(color: Colors.red, fontSize: 20))
-      ]),
+      child: Row(
+        children: [
+          Text(value, style: const TextStyle(fontSize: 18)),
+          const Text(" *", style: TextStyle(color: Colors.red, fontSize: 20))
+        ],
+      ),
     );
   }
 }

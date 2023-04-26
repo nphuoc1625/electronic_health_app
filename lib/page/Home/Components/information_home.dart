@@ -35,14 +35,16 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                          padding: const EdgeInsets.all(13),
-                          color: Colors.blue,
-                          child: const Icon(
-                            Icons.library_books,
-                            color: Colors.white,
-                          ))),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    child: Container(
+                      padding: const EdgeInsets.all(13),
+                      color: Colors.blue,
+                      child: const Icon(
+                        Icons.library_books,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),
@@ -70,14 +72,16 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                          padding: const EdgeInsets.all(13),
-                          color: Colors.orange,
-                          child: const Icon(
-                            Icons.vaccines,
-                            color: Colors.white,
-                          ))),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    child: Container(
+                      padding: const EdgeInsets.all(13),
+                      color: Colors.orange,
+                      child: const Icon(
+                        Icons.vaccines,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),
@@ -105,14 +109,16 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                          padding: const EdgeInsets.all(13),
-                          color: Colors.pinkAccent,
-                          child: const Icon(
-                            Icons.calendar_month,
-                            color: Colors.white,
-                          ))),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    child: Container(
+                      padding: const EdgeInsets.all(13),
+                      color: Colors.pinkAccent,
+                      child: const Icon(
+                        Icons.calendar_month,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),
@@ -140,14 +146,16 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                          padding: const EdgeInsets.all(13),
-                          color: Colors.indigo,
-                          child: const Icon(
-                            Icons.file_copy,
-                            color: Colors.white,
-                          ))),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    child: Container(
+                      padding: const EdgeInsets.all(13),
+                      color: Colors.indigo,
+                      child: const Icon(
+                        Icons.file_copy,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),
@@ -175,14 +183,16 @@ class InformationHome extends StatelessWidget {
               Row(
                 children: [
                   ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                          padding: const EdgeInsets.all(13),
-                          color: Colors.green,
-                          child: const Icon(
-                            Icons.feedback,
-                            color: Colors.white,
-                          ))),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    child: Container(
+                      padding: const EdgeInsets.all(13),
+                      color: Colors.green,
+                      child: const Icon(
+                        Icons.feedback,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 15,
                   ),
@@ -215,15 +225,16 @@ class InformationHome extends StatelessWidget {
                 Row(
                   children: [
                     ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15)),
-                        child: Container(
-                            padding: const EdgeInsets.all(13),
-                            color: Colors.red,
-                            child: const Icon(
-                              Icons.bar_chart_outlined,
-                              color: Colors.white,
-                            ))),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      child: Container(
+                        padding: const EdgeInsets.all(13),
+                        color: Colors.red,
+                        child: const Icon(
+                          Icons.bar_chart_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       width: 15,
                     ),

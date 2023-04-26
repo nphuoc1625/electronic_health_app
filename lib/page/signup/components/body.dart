@@ -38,7 +38,7 @@ class _BodyState extends State<Body> {
                       Text(
                         "Sổ sức khỏe điện tử",
                         style:
-                        TextStyle(fontSize: 16, color: Colors.blueAccent),
+                        TextStyle(fontSize: 16, color: Colors.blue),
                       ),
                     ],
                   )

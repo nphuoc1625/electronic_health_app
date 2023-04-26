@@ -296,7 +296,7 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                               ),
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, HomePage.routeName);
+                                    context, MyNavigationBar.routeName);
                               },
                               child: const Text('Gửi tờ khai'),
                             ),
