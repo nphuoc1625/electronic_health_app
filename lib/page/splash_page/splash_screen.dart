@@ -1,4 +1,4 @@
-import 'package:electronic_health_app/page/SplashPage/page.dart';
+import 'package:electronic_health_app/page/splash_page/page.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:flutter/material.dart';

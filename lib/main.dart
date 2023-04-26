@@ -2,9 +2,9 @@ import 'package:electronic_health_app/page/Home/Components/Category/category_cer
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
-import 'package:electronic_health_app/page/NavigationBar.dart';
+import 'package:electronic_health_app/page/navigation_bar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
-import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
+import 'package:electronic_health_app/page/splash_page/splash_screen.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:flutter/material.dart';

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:electronic_health_app/model/user.dart';
-import 'package:electronic_health_app/page/NavigationBar.dart';
+import 'package:electronic_health_app/page/navigation_bar.dart';
 
 
 class SignInForm extends StatefulWidget {
@@ -268,7 +268,7 @@ class _SignInFormState extends State<SignInForm> {
       if (mounted) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$e')),
+          const SnackBar(content: Text('Tên email hoặc mật khẩu không đúng',)),
         );
       }
     }
