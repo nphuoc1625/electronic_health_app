@@ -1,6 +1,7 @@
 import 'package:electronic_health_app/page/Personal/myqrcode.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
-import 'package:electronic_health_app/page/signInPage.dart';
+import 'package:electronic_health_app/signin/signinpage.dart';
+
 import 'package:flutter/material.dart';
 
 class PersonalPage extends StatelessWidget {

@@ -1,17 +1,21 @@
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
 import 'package:electronic_health_app/page/NavigationBar.dart';
-import 'package:electronic_health_app/page/Home/HomePage.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
-import 'package:electronic_health_app/page/SignUpPage.dart';
 import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
+import 'package:electronic_health_app/signin/signinpage.dart';
+import 'package:electronic_health_app/signup/signuppage.dart';
 import 'package:flutter/material.dart';
-import 'package:electronic_health_app/page/SignInPage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {

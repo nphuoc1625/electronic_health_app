@@ -1,6 +1,5 @@
-class User{
-  String username;
-  String password;
-
-  User({required this.username, required this.password});
+class MyUser {
+  final String email;
+  final String pass;
+  MyUser(this.email, this.pass);
 }
