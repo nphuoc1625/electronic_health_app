@@ -13,6 +13,7 @@ class Utilities{
     else
       return null;
   }
+  //
 
   static String? validatePassword(String value){
     if(value.isEmpty)
