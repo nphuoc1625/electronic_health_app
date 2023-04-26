@@ -5,8 +5,8 @@ import 'package:electronic_health_app/page/Home/Components/Category/TestResult/t
 import 'package:electronic_health_app/page/NavigationBar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
 import 'package:electronic_health_app/page/SplashPage/splash_screen.dart';
-import 'package:electronic_health_app/signin/signinpage.dart';
-import 'package:electronic_health_app/signup/signuppage.dart';
+import 'package:electronic_health_app/page/signin/signinpage.dart';
+import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

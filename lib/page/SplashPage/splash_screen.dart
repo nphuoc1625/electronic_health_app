@@ -1,6 +1,6 @@
 import 'package:electronic_health_app/page/SplashPage/page.dart';
-import 'package:electronic_health_app/signin/signinpage.dart';
-import 'package:electronic_health_app/signup/signuppage.dart';
+import 'package:electronic_health_app/page/signin/signinpage.dart';
+import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
