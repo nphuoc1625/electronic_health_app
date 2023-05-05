@@ -1,5 +1,5 @@
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryCertification.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/CategoryDeclaration.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
 import 'package:flutter/material.dart';
 
@@ -27,14 +27,16 @@ class CategoryHome extends StatelessWidget {
             child: Column(
               children: [
                 ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: Container(
-                        padding: const EdgeInsets.all(13),
-                        color: Colors.white,
-                        child: Icon(
-                          Icons.library_books,
-                          color: Colors.blue[400],
-                        ))),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    padding: const EdgeInsets.all(13),
+                    color: Colors.white,
+                    child: Icon(
+                      Icons.library_books,
+                      color: Colors.blue[400],
+                    ),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.only(top: 20),
                   child: const Text(
@@ -66,14 +68,16 @@ class CategoryHome extends StatelessWidget {
             child: Column(
               children: [
                 ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: Container(
-                        padding: const EdgeInsets.all(13),
-                        color: Colors.white,
-                        child: const Icon(
-                          Icons.add_moderator,
-                          color: Colors.green,
-                        ))),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    padding: const EdgeInsets.all(13),
+                    color: Colors.white,
+                    child: const Icon(
+                      Icons.add_moderator,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.only(top: 20),
                   child: const Text(
@@ -105,14 +109,16 @@ class CategoryHome extends StatelessWidget {
             child: Column(
               children: [
                 ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: Container(
-                        padding: const EdgeInsets.all(13),
-                        color: Colors.white,
-                        child: const Icon(
-                          Icons.remove,
-                          color: Colors.redAccent,
-                        ))),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    padding: const EdgeInsets.all(13),
+                    color: Colors.white,
+                    child: const Icon(
+                      Icons.remove,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.only(top: 20),
                   child: const Text(

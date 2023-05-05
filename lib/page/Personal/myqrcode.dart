@@ -9,13 +9,14 @@ class MyQRCode extends StatelessWidget {
     return Column(
       children: [
         Container(
-            height: 150,
-            width: 150,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: Colors.white),
-            child: QrImage(
-              data: "Hello",
-            )),
+          height: 150,
+          width: 150,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10), color: Colors.white),
+          child: QrImage(
+            data: "Hello",
+          ),
+        ),
         const Padding(
           padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
           child: Text(

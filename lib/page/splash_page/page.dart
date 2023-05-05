@@ -29,7 +29,7 @@ class Page1 extends StatelessWidget {
             Image.asset(image,height: 450,),
             const SizedBox(
               height: 80,
-            )
+            ),
           ],
         ),
       ),

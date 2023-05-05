@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "462260908466",
+    "firebase_url": "https://electronichealthapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "electronichealthapp",
+    "storage_bucket": "electronichealthapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462260908466:android:a3e5099eb1debb5b4034ab",
+        "android_client_info": {
+          "package_name": "com.example.electronic_health_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462260908466-5c2j4955q3brhpu56124kpjnl8ljm83g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfvR0tgtS7DUbg9ZOfwnHg7MW7YH4FLSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462260908466-5c2j4955q3brhpu56124kpjnl8ljm83g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "462260908466-99adpkm8gccqk4pk1a2fe4ek9ananftu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.electronicHealthApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
