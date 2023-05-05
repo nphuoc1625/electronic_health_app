@@ -17,6 +17,8 @@ class _TestResultFormState extends State<TestResultForm> {
 
   var addedImages = [];
 
+  List<String> result = ['Âm tính', 'Dương tính'];
+
   @override
   void initState() {
     super.initState();
@@ -43,6 +45,16 @@ class _TestResultFormState extends State<TestResultForm> {
           const SizedBox(height: 20),
           TextFormField(
             controller: _testType,
+            keyboardType: TextInputType.none,
+            onTap: () {
+              showMenu(
+                  constraints: BoxConstraints(),
+                  context: context,
+                  position: RelativeRect.fromLTRB(0, 0, 0, 0),
+                  items: [
+                    PopupMenuItem(child: Text('Vero Cell')),
+                  ]);
+            },
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -88,6 +100,19 @@ class _TestResultFormState extends State<TestResultForm> {
                 flex: 1,
                 child: TextFormField(
                   controller: _date,
+                  keyboardType: TextInputType.none,
+                  onTap: () {
+                    showDatePicker(
+                            lastDate: DateTime.now(),
+                            firstDate: DateTime(2019),
+                            context: context,
+                            initialDate: DateTime.now())
+                        .then((value) {
+                      if (value != null) {
+                        _time.text = "${value.hour}:${value.minute}";
+                      }
+                    });
+                  },
                   decoration: InputDecoration(
                       border: const OutlineInputBorder(),
                       floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -102,7 +127,7 @@ class _TestResultFormState extends State<TestResultForm> {
                         Icons.calendar_month_outlined,
                         color: Colors.blue,
                       )),
-                  validator: (value) => Validator.simpleValidator(value),
+                  validator: (value) => Validator.dateValidator(value!),
                 ),
               ),
             ],
@@ -110,7 +135,24 @@ class _TestResultFormState extends State<TestResultForm> {
           const SizedBox(height: 20),
           TextFormField(
             controller: _result,
-            onTap: () {},
+            keyboardType: TextInputType.none,
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return ListView.builder(
+                    itemCount: result.length,
+                    itemBuilder: (context, index) {
+                      return TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, result[index]);
+                          },
+                          child: Text(result[index]));
+                    },
+                  );
+                },
+              ).then((value) => value != null ? {_result.text = value} : {});
+            },
             validator: (value) => Validator.simpleValidator(value),
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),

@@ -8,6 +8,7 @@ class Validator {
     return null;
   }
 
+  static dateValidator(String date) {}
   static imageValidator(Image? value) {
     if (value != null) {
       return 'Vui lòng nhập loại xét nghiệm';
