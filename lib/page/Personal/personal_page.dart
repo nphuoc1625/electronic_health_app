@@ -1,5 +1,5 @@
 import 'package:electronic_health_app/page/Personal/myqrcode.dart';
-import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
+import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 
 import 'package:flutter/material.dart';

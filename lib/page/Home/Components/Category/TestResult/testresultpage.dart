@@ -3,10 +3,21 @@ import 'package:flutter/material.dart';
 
 import 'testresult_form.dart';
 
-class TestResultPage extends StatelessWidget {
+class TestResultPage extends StatefulWidget {
   const TestResultPage({super.key});
 
   static String routeName = '/testresult';
+
+  @override
+  State<TestResultPage> createState() => _TestResultPageState();
+}
+
+class _TestResultPageState extends State<TestResultPage> {
+  // final  GlobalKey<State<TestResultForm>> _myWidgetState = GlobalKey<State<TestResultForm>>();
+
+  // onSaveClick(){
+  //   _myWidgetState.currentState!.
+  // }
 
   @override
   Widget build(BuildContext context) {

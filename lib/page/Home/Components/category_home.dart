@@ -1,6 +1,6 @@
 import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresultpage.dart';
 import 'package:flutter/material.dart';
 
 class CategoryHome extends StatelessWidget {

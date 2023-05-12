@@ -41,10 +41,7 @@ class PersonalInfo extends StatelessWidget {
         ),
         title: const Text("Chỉnh sửa thông tin cá nhân"),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: PersonalInfoForm(),
-      ),
+      body: const PersonalInfoForm(),
     );
   }
 }

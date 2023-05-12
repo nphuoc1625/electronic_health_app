@@ -1,5 +1,5 @@
+import 'package:electronic_health_app/model/validator.dart';
 import 'package:flutter/material.dart';
-import 'package:electronic_health_app/model/ultilities.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +26,7 @@ class _SignInFormState extends State<SignInForm> {
   @override
   void initState() {
     super.initState();
+    checkIfSaved();
   }
 
   Future<void> checkIfSaved() async {
@@ -36,6 +37,11 @@ class _SignInFormState extends State<SignInForm> {
         _password.text = ref.getString('password')!;
         _save = true;
       });
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: _username.text, password: _password.text)
+          .then((value) =>
+              Navigator.pushNamed(context, MyNavigationBar.routeName));
     }
   }
 
@@ -106,7 +112,7 @@ class _SignInFormState extends State<SignInForm> {
                 ),
                 TextFormField(
                   validator: (value) {
-                    return Utilities.validateEmail(_username.text);
+                    return Validator.validateEmail(_username.text);
                   },
                   onSaved: (newValue) {},
                   controller: _username,
@@ -135,7 +141,7 @@ class _SignInFormState extends State<SignInForm> {
                 TextFormField(
                   controller: _password,
                   validator: (value) {
-                    return Utilities.validatePassword(_password.text);
+                    return Validator.validatePassword(_password.text);
                   },
                   obscureText: !_passwordVisible,
                   keyboardType: TextInputType.text,

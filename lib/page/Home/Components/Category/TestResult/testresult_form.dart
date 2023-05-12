@@ -1,4 +1,15 @@
-import 'package:electronic_health_app/page/Home/Components/Category/TestResult/validator.dart';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:electronic_health_app/models/testresult.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/components/pickimage_menu.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/components/style.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/components/testresult_menu.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/components/testtype_menu.dart';
+import 'package:electronic_health_app/model/validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class TestResultForm extends StatefulWidget {
@@ -15,13 +26,44 @@ class _TestResultFormState extends State<TestResultForm> {
   final _date = TextEditingController();
   final _result = TextEditingController();
 
-  var addedImages = [];
+  Image? addedImages;
+  String? imagepath;
+  DateTime time = DateTime.now();
 
   List<String> result = ['Âm tính', 'Dương tính'];
+  List<String> type = [
+    'Xét nghiệm PCR',
+    'Xét nghiệm kháng thể',
+    'Xét nghiệm kháng nguyên',
+    'Genexpert'
+  ];
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      //Check if User had data
+      getData();
+    });
     super.initState();
+  }
+
+  getData() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    DataSnapshot value =
+        await FirebaseDatabase.instance.ref('user/$uid/test-result').get();
+    if (value.value != null) {
+      TestResult data = TestResult.fromMap(value.value as Map);
+      _testType.text = data.type;
+      _result.text = data.result;
+      _date.text = data.date;
+      _time.text = data.time;
+
+      var imageData = await FirebaseStorage.instance
+          .ref('user/$uid/testresult_image.png')
+          .getData();
+      addedImages = Image.memory(imageData!);
+      setState(() {});
+    }
   }
 
   @override
@@ -31,6 +73,24 @@ class _TestResultFormState extends State<TestResultForm> {
     _date.dispose();
     _result.dispose();
     super.dispose();
+  }
+
+  void save() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    TestResult result = TestResult(_testType.text, time, _result.text);
+    FirebaseDatabase.instance
+        .ref('user/$uid/test-result')
+        .update(result.toMap());
+
+    FirebaseStorage.instance
+        .ref('user/$uid/testresult_image.png')
+        .putFile(File(imagepath!));
+  }
+
+  void onAddedImage(Image image, String path) {
+    addedImages = image;
+    imagepath = path;
+    setState(() {});
   }
 
   @override
@@ -50,36 +110,19 @@ class _TestResultFormState extends State<TestResultForm> {
             controller: _testType,
             keyboardType: TextInputType.none,
             onTap: () {
-              showMenu(
-                  constraints: BoxConstraints(),
-                  context: context,
-                  position: RelativeRect.fromLTRB(0, 0, 0, 0),
-                  items: [
-                    PopupMenuItem(child: Text('Vero Cell')),
-                  ]);
+              showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return TestTypeMenu(type);
+                      },
+                      constraints: const BoxConstraints(maxHeight: 200))
+                  .then((value) => value != null
+                      ? _testType.text = value
+                      : _testType.text = '');
             },
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              label: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text(
-                    "Loại xét nghiệm",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    "*",
-                    style: TextStyle(color: Colors.red, fontSize: 18),
-                  )
-                ],
-              ),
-              suffixIcon: const Icon(
-                Icons.keyboard_arrow_down_outlined,
-                color: Colors.blue,
-              ),
-            ),
-            validator: (value) => Validator.simpleValidator(value),
+            decoration: TestResultStyles.typeFormDecoration,
+            validator: (value) => Validator.Empty(value),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
           const SizedBox(height: 20),
           Row(
@@ -87,20 +130,6 @@ class _TestResultFormState extends State<TestResultForm> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
-                  controller: _time,
-                  validator: (value) => Validator.simpleValidator(value),
-                  keyboardType: TextInputType.none,
-                  onTap: () {
-                    showTimePicker(
-                            context: context, initialTime: TimeOfDay.now())
-                        .then(
-                      (value) {
-                        if (value != null) {
-                          _time.text = "${value.hour}:${value.minute}";
-                        }
-                      },
-                    );
-                  },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text("Giờ lấy mẫu"),
@@ -109,6 +138,25 @@ class _TestResultFormState extends State<TestResultForm> {
                       color: Colors.blue,
                     ),
                   ),
+                  keyboardType: TextInputType.none,
+                  controller: _time,
+                  onTap: () {
+                    showTimePicker(
+                            context: context, initialTime: TimeOfDay.now())
+                        .then(
+                      (value) {
+                        if (value != null) {
+                          time.copyWith(
+                            hour: value.hour,
+                            minute: value.minute,
+                          );
+                          _time.text = "${value.hour}:${value.minute}";
+                        }
+                      },
+                    );
+                  },
+                  validator: (value) => Validator.Empty(value),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ),
               const SizedBox(width: 10),
@@ -125,25 +173,20 @@ class _TestResultFormState extends State<TestResultForm> {
                             initialDate: DateTime.now())
                         .then((value) {
                       if (value != null) {
-                        _time.text = "${value.hour}:${value.minute}";
+                        setState(() {
+                          time.copyWith(
+                              day: value.day,
+                              month: value.month,
+                              year: value.year);
+                          _date.text =
+                              "${value.day}/${value.month}/${value.year}";
+                        });
                       }
                     });
                   },
-                  decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      label: Row(children: const [
-                        Text("Ngày lấy mẫu"),
-                        Text(
-                          "*",
-                          style: TextStyle(color: Colors.red),
-                        )
-                      ]),
-                      suffixIcon: const Icon(
-                        Icons.calendar_month_outlined,
-                        color: Colors.blue,
-                      )),
-                  validator: (value) => Validator.simpleValidator(value),
+                  decoration: TestResultStyles.dateFormDecoration,
+                  validator: (value) => Validator.dateValidator(value),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ),
             ],
@@ -156,38 +199,19 @@ class _TestResultFormState extends State<TestResultForm> {
               showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return ListView.builder(
-                    itemCount: result.length,
-                    itemBuilder: (context, index) {
-                      return TextButton(
-                          onPressed: () {
-                            Navigator.pop(context, result[index]);
-                          },
-                          child: Text(result[index]));
-                    },
-                  );
+                  return TestResultMenu(result);
                 },
+                constraints: const BoxConstraints(maxHeight: 200),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
               ).then((value) => value != null ? {_result.text = value} : {});
             },
-            validator: (value) => Validator.simpleValidator(value),
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              label: Row(
-                children: const [
-                  Text("Kết quả"),
-                  Text(
-                    "*",
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ],
-              ),
-              suffixIcon: const Icon(
-                Icons.keyboard_arrow_down_outlined,
-                color: Colors.blue,
-              ),
-            ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) => Validator.Empty(value),
+            decoration: TestResultStyles.resultFormDecoration,
           ),
-          const SizedBox(height: 20),
           const Text(
             "Minh chứng kết quả xét nghiệm ",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -195,47 +219,42 @@ class _TestResultFormState extends State<TestResultForm> {
           const SizedBox(height: 20),
           const Text("Có thể là giấy chứng nhận hoặc ảnh chụp kit test nhanh"),
           const SizedBox(height: 20),
-          Visibility(
-            visible: false,
-            child: SizedBox(
-              height: 70,
-              child: FormField<Image>(
-                validator: (value) => Validator.imageValidator(value),
-                builder: (field) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => addedImages[index],
-                    itemCount: addedImages.length,
-                  );
-                },
-              ),
-            ),
+          FormField<Image>(
+            initialValue: addedImages,
+            builder: (field) {
+              return Column(
+                children: [
+                  field.errorText != null
+                      ? Text(
+                          field.errorText!,
+                          style: const TextStyle(color: Colors.red),
+                        )
+                      : const SizedBox(),
+                  addedImages != null
+                      ? Stack(alignment: Alignment.topCenter, children: [
+                          addedImages!,
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    addedImages = null;
+                                  });
+                                },
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.red,
+                                )),
+                          )
+                        ])
+                      : const SizedBox()
+                ],
+              );
+            },
+            validator: (value) =>
+                addedImages == null ? 'Thiếu ảnh minh  ' : null,
           ),
-          SizedBox(
-            height: 60,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [Icon(Icons.camera_alt), Text("Chụp ảnh")],
-                  ),
-                ),
-                const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: VerticalDivider(
-                        width: 20, thickness: 1, color: Colors.grey)),
-                TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    children: const [Icon(Icons.camera_alt), Text("Thư viện")],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          PickImageMenu(onAddedImage),
           const SizedBox(height: 20),
           Center(
             child: ElevatedButton(
@@ -245,13 +264,7 @@ class _TestResultFormState extends State<TestResultForm> {
                       borderRadius: BorderRadius.circular(50))),
                   backgroundColor: const MaterialStatePropertyAll(Colors.blue)),
               onPressed: () {
-                setState(() {
-                  addedImages.add(const Icon(Icons.image));
-                });
-                if (!_formKey.currentState!.validate()) {
-                } else {
-                  //Update data
-                }
+                if (_formKey.currentState!.validate()) save();
               },
               child: const Text("Lưu thông tin"),
             ),

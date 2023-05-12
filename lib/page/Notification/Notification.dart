@@ -1,5 +1,5 @@
 // ignore: file_names
-import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
+import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/mynotification.dart';

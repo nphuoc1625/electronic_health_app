@@ -1,10 +1,9 @@
 import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
-import 'package:electronic_health_app/page/Home/Components/CovidData.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresult.dart';
-import 'package:electronic_health_app/page/Home/HomePage.dart';
+import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
+import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresultpage.dart';
 import 'package:electronic_health_app/page/navigation_bar.dart';
-import 'package:electronic_health_app/page/Personal/personalinfo/personal_info.dart';
+import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
 import 'package:electronic_health_app/page/splash_page/splash_screen.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';

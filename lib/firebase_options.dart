@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -56,16 +59,5 @@ class DefaultFirebaseOptions {
     projectId: 'electronichealthapp',
     databaseURL: 'https://electronichealthapp-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'electronichealthapp.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDGl-cv-VjpHDMgeYZYCBNaTO7jy71V8RM',
-    appId: '1:462260908466:ios:261415e3a88647264034ab',
-    messagingSenderId: '462260908466',
-    projectId: 'electronichealthapp',
-    databaseURL: 'https://electronichealthapp-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'electronichealthapp.appspot.com',
-    iosClientId: '462260908466-99adpkm8gccqk4pk1a2fe4ek9ananftu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.electronicHealthApp',
   );
 }

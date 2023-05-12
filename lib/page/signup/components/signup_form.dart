@@ -1,7 +1,7 @@
 import 'package:electronic_health_app/model/user.dart';
+import 'package:electronic_health_app/model/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:electronic_health_app/model/ultilities.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -90,7 +90,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   emailTextFormField() {
     return TextFormField(
-      validator: (value) => Utilities.validateEmail(value!),
+      validator: (value) => Validator.validateEmail(value!),
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) {},
       controller: email,
@@ -111,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
   passwordTextFormField() {
     return TextFormField(
       key: _passKey,
-      validator: (value) => Utilities.validatePassword(value!),
+      validator: (value) => Validator.validatePassword(value!),
       obscureText: !_passwordVisible,
       keyboardType: TextInputType.text,
       onSaved: (newValue) {},
@@ -147,7 +147,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       validator: (value) {
         String pass = _passKey.currentState!.value;
-        return Utilities.conformPassword(pass, value!);
+        return Validator.conformPassword(pass, value!);
       },
       keyboardType: TextInputType.text,
       obscureText: !_repasswordVisible,
