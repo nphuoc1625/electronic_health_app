@@ -37,11 +37,6 @@ class _SignInFormState extends State<SignInForm> {
         _password.text = ref.getString('password')!;
         _save = true;
       });
-      FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _username.text, password: _password.text)
-          .then((value) =>
-              Navigator.pushNamed(context, MyNavigationBar.routeName));
     }
   }
 
@@ -78,8 +73,8 @@ class _SignInFormState extends State<SignInForm> {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  children: const [
+                const Column(
+                  children: [
                     Text(
                       "SSKĐT",
                       style: TextStyle(

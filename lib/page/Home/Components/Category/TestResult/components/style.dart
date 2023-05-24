@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
 class TestResultStyles {
-  static final typeFormDecoration = InputDecoration(
-    border: const OutlineInputBorder(),
+  static const typeFormDecoration = InputDecoration(
+    border: OutlineInputBorder(),
     floatingLabelBehavior: FloatingLabelBehavior.always,
     label: Row(
       mainAxisSize: MainAxisSize.min,
-      children: const [
+      children: [
         Text("Loại xét nghiệm", style: TextStyle(fontSize: 18)),
         Text("*", style: TextStyle(color: Colors.red, fontSize: 18))
       ],
     ),
-    suffixIcon: const Icon(
+    suffixIcon: Icon(
       Icons.keyboard_arrow_down_outlined,
       color: Colors.blue,
     ),
   );
 
-  static final resultFormDecoration = InputDecoration(
-    border: const OutlineInputBorder(),
+  static const resultFormDecoration = InputDecoration(
+    border: OutlineInputBorder(),
     label: Row(
-      children: const [
+      children: [
         Text("Kết quả"),
         Text(
           "*",
@@ -28,20 +28,20 @@ class TestResultStyles {
         ),
       ],
     ),
-    suffixIcon: const Icon(
+    suffixIcon: Icon(
       Icons.keyboard_arrow_down_outlined,
       color: Colors.blue,
     ),
   );
 
-  static final dateFormDecoration = InputDecoration(
-      border: const OutlineInputBorder(),
+  static const dateFormDecoration = InputDecoration(
+      border: OutlineInputBorder(),
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      label: Row(children: const [
+      label: Row(children: [
         Text("Ngày lấy mẫu"),
         Text("*", style: TextStyle(color: Colors.red))
       ]),
-      suffixIcon: const Icon(
+      suffixIcon: Icon(
         Icons.calendar_month_outlined,
         color: Colors.blue,
       ));

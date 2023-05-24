@@ -9,248 +9,104 @@ class InformationHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              'Thông tin y tế',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(50),
+            topRight: Radius.circular(50),
+          )),
+      padding: const EdgeInsets.all(30),
+      child: Center(
+          child: Column(
+        children: [
+          const Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Text(
+              'Chức năng',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
             ),
-            Icon(Icons.more_horiz),
-          ],
-        ),
-        const SizedBox(
-          height: 25,
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      padding: const EdgeInsets.all(13),
-                      color: Colors.blue,
-                      child: const Icon(
-                        Icons.library_books,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Hộ chiếu vắc-xin',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              const Icon(Icons.more_horiz),
-            ],
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      padding: const EdgeInsets.all(13),
-                      color: Colors.orange,
-                      child: const Icon(
-                        Icons.vaccines,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Đăng ký tiêm chủng',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              const Icon(Icons.more_horiz),
-            ],
+          const SizedBox(
+            height: 25,
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      padding: const EdgeInsets.all(13),
-                      color: Colors.pinkAccent,
-                      child: const Icon(
-                        Icons.calendar_month,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Đặt lịch khám',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              const Icon(Icons.more_horiz),
-            ],
+          container(context, () {}, 'Hộ chiếu vắc-xin', Icons.library_books,
+              Colors.blue),
+          const SizedBox(
+            height: 12,
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      padding: const EdgeInsets.all(13),
-                      color: Colors.indigo,
-                      child: const Icon(
-                        Icons.file_copy,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Hồ sơ sức khỏe',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              const Icon(Icons.more_horiz),
-            ],
+          container(context, () {}, 'Đăng ký tiêm chủng', Icons.vaccines,
+              Colors.green),
+          const SizedBox(
+            height: 12,
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              color: Colors.white),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      padding: const EdgeInsets.all(13),
-                      color: Colors.green,
-                      child: const Icon(
-                        Icons.feedback,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Phản ánh tiêm chủng',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                ],
-              ),
-              const Icon(Icons.more_horiz),
-            ],
+          container(context, () {}, 'Đặt lịch khám', Icons.calendar_month,
+              Colors.yellow),
+          const SizedBox(
+            height: 12,
           ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        GestureDetector(
-          onTap: () {
+          container(context, () {}, 'Hồ sơ sức khỏe', Icons.feedback,
+              Colors.purple),
+          const SizedBox(
+            height: 12,
+          ),
+          container(
+              context,
+              () => Navigator.pushNamed(context, CovidData.routeName),
+              'Phản ánh tiêm chủng',
+              Icons.feedback,
+              Colors.red),
+          const SizedBox(
+            height: 12,
+          ),
+          container(context, () {
             Navigator.pushNamed(context, CovidData.routeName,
                 arguments: CovidData.coviddata);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                color: Colors.white),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          }, 'Dữ liệu Covid-19', Icons.bar_chart_outlined, Colors.orange),
+        ],
+      )),
+    );
+  }
+
+  GestureDetector container(BuildContext context, void Function() onTap,
+      String text, IconData icon, MaterialColor color) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            color: Color.fromARGB(255, 255, 255, 255)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Container(
-                        padding: const EdgeInsets.all(13),
-                        color: Colors.red,
-                        child: const Icon(
-                          Icons.bar_chart_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  child: Container(
+                    padding: const EdgeInsets.all(13),
+                    color: color,
+                    child: Icon(
+                      icon,
+                      color: Colors.white,
                     ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    const Text(
-                      'Dữ liệu Covid-19',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ],
+                  ),
                 ),
-                const Icon(Icons.more_horiz),
+                const SizedBox(
+                  width: 15,
+                ),
+                Text(
+                  text,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
+                )
               ],
             ),
-          ),
+            const Icon(Icons.more_horiz),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

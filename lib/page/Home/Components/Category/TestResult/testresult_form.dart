@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:electronic_health_app/models/testresult.dart';
@@ -11,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 class TestResultForm extends StatefulWidget {
   const TestResultForm({super.key});
@@ -87,8 +87,8 @@ class _TestResultFormState extends State<TestResultForm> {
         .putFile(File(imagepath!));
   }
 
-  void onAddedImage(Image image, String path) {
-    addedImages = image;
+  void onAddedImage(InputImage image, String? path) {
+    addedImages = Image.memory(image.bytes!);
     imagepath = path;
     setState(() {});
   }
@@ -121,7 +121,7 @@ class _TestResultFormState extends State<TestResultForm> {
                       : _testType.text = '');
             },
             decoration: TestResultStyles.typeFormDecoration,
-            validator: (value) => Validator.Empty(value),
+            validator: (value) => Validator.isEmpty(value),
             autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
           const SizedBox(height: 20),
@@ -155,7 +155,7 @@ class _TestResultFormState extends State<TestResultForm> {
                       },
                     );
                   },
-                  validator: (value) => Validator.Empty(value),
+                  validator: (value) => Validator.isEmpty(value),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
               ),
@@ -209,7 +209,7 @@ class _TestResultFormState extends State<TestResultForm> {
               ).then((value) => value != null ? {_result.text = value} : {});
             },
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) => Validator.Empty(value),
+            validator: (value) => Validator.isEmpty(value),
             decoration: TestResultStyles.resultFormDecoration,
           ),
           const Text(

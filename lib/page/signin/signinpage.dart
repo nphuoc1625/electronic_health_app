@@ -1,6 +1,3 @@
-import 'package:electronic_health_app/page/Home/HomePage.dart';
-import 'package:electronic_health_app/page/navigation_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
@@ -19,8 +16,6 @@ class _SignInPageState extends State<SignInPage> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +31,8 @@ class _SignInPageState extends State<SignInPage> {
       ),
       backgroundColor: Colors.grey[200],
       body: const SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Body(),
+        scrollDirection: Axis.vertical,
+        child: Body(),
       ),
     );
   }

@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
 import 'package:flutter/material.dart';
 
@@ -39,10 +38,10 @@ class NotificationPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white),
                 height: 140,
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Ca COVID-19 nặng tăng; Những biến thể phụ nào xuất hiện tại Việt Nam?",
                       style:

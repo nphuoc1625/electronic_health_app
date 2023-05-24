@@ -1,10 +1,12 @@
+import 'package:electronic_health_app/page/Personal/personalinfo/takepicture.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PickImageMenu extends StatefulWidget {
   const PickImageMenu(this.onAddedImage, {super.key});
 
-  final Function(Image image, String path) onAddedImage;
+  final Function(InputImage inputImage, String? path) onAddedImage;
 
   @override
   State<PickImageMenu> createState() => _PickImageMenuState();
@@ -13,13 +15,9 @@ class PickImageMenu extends StatefulWidget {
 class _PickImageMenuState extends State<PickImageMenu> {
   void _pickImage(ImageSource source, BuildContext context) {
     ImagePicker picker = ImagePicker();
-
     picker.pickImage(source: source, maxWidth: 1080).then((value) async {
       if (value != null) {
-        value.readAsBytes().then((byte) {
-          Image? addedImages = Image.memory(byte);
-          widget.onAddedImage(addedImages, value.path);
-        });
+        widget.onAddedImage(InputImage.fromFilePath(value.path), value.path);
       }
     });
   }
@@ -35,10 +33,18 @@ class _PickImageMenuState extends State<PickImageMenu> {
           children: [
             TextButton(
               onPressed: () {
-                _pickImage(ImageSource.camera, context);
+                Navigator.push(context, MaterialPageRoute<InputImage>(
+                  builder: (context) {
+                    return const TakeFacePicture();
+                  },
+                )).then((value) {
+                  if (value != null) {
+                    widget.onAddedImage(value, null);
+                  }
+                });
               },
-              child: Column(
-                children: const [Icon(Icons.camera_alt), Text("Chụp ảnh")],
+              child: const Column(
+                children: [Icon(Icons.camera_alt), Text("Chụp ảnh")],
               ),
             ),
             const Padding(
@@ -49,8 +55,8 @@ class _PickImageMenuState extends State<PickImageMenu> {
               onPressed: () {
                 _pickImage(ImageSource.gallery, context);
               },
-              child: Column(
-                children: const [Icon(Icons.camera_alt), Text("Thư viện")],
+              child: const Column(
+                children: [Icon(Icons.camera_alt), Text("Thư viện")],
               ),
             ),
           ],

@@ -54,7 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     Text("Xác nhận mật khẩu", style: TextStyle(fontSize: 18)),
               ),
             ),
-            conformTextFormField(),
+            confirmTextFormField(),
             const SizedBox(height: 30),
             SizedBox(
               height: 50,
@@ -143,7 +143,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  conformTextFormField() {
+  confirmTextFormField() {
     return TextFormField(
       validator: (value) {
         String pass = _passKey.currentState!.value;
@@ -182,6 +182,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   onClickRegister(BuildContext context) async {
     ScaffoldMessenger.of(context).clearSnackBars();
+
     try {
       UserCredential credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(

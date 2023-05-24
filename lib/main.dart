@@ -2,6 +2,8 @@ import 'package:electronic_health_app/page/Home/Components/Category/category_cer
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresultpage.dart';
+import 'package:electronic_health_app/page/Personal/changepassword/changepasswordpage.dart';
+import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived.dart';
 import 'package:electronic_health_app/page/navigation_bar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
 import 'package:electronic_health_app/page/splash_page/splash_screen.dart';
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
             const CategoryCertification()),
         CovidData.routeName: (context) => const CovidData(),
         TestResultPage.routeName: (context) => const TestResultPage(),
-        PersonalInfo.routeName: (context) => const PersonalInfo()
+        PersonalInfo.routeName: (context) => const PersonalInfo(),
+        ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
+        PlacesArrived.routeName: (context) => const PlacesArrived()
       },
       home: const Splash(),
     );

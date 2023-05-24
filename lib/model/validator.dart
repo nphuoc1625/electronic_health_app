@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiver/strings.dart';
 
 class Validator {
-  static String? Empty(String? value) {
+  static String? isEmpty(String? value) {
     if (value!.isEmpty) {
       return "Không được để trống";
     }
@@ -10,7 +10,7 @@ class Validator {
   }
 
   static String? validateEmail(String? value) {
-    Empty(value);
+    isEmpty(value);
 
     RegExp regex = RegExp(
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
@@ -23,7 +23,7 @@ class Validator {
   //
 
   static String? validatePassword(String value) {
-    Empty(value);
+    isEmpty(value);
     if (value.length < 8) {
       return "Mật khẩu phải nhiều hơn 8 ký tự";
     }
@@ -31,8 +31,8 @@ class Validator {
   }
 
   static String? conformPassword(String value, String value2) {
-    Empty(value);
-    Empty(value2);
+    isEmpty(value);
+    isEmpty(value2);
     if (!equalsIgnoreCase(value, value2)) {
       return "Mật khẩu nhập lại không hợp lệ";
     }
@@ -40,7 +40,7 @@ class Validator {
   }
 
   static dateValidator(String? date) {
-    Empty(date);
+    isEmpty(date);
 
     return null;
   }

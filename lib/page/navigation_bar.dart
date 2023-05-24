@@ -2,6 +2,7 @@ import 'package:electronic_health_app/page/Calendar/calendar.dart';
 import 'package:electronic_health_app/page/Home/homepage.dart';
 import 'package:electronic_health_app/page/Notification/notification.dart';
 import 'package:electronic_health_app/page/Personal/personal_page.dart';
+import 'package:electronic_health_app/page/qrscan.dart';
 import 'package:flutter/material.dart';
 
 /// This Widget is the main application widget.
@@ -17,9 +18,10 @@ class MyNavigationBar extends StatefulWidget {
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
   int _selectedIndex = 0;
-  final List<Widget> _widgetOptions = [
+  final List<Widget?> _widgetOptions = [
     const HomePage(),
     const CalendarPage(),
+    null,
     NotificationPage(),
     const PersonalPage(),
   ];
@@ -32,71 +34,79 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.home,
-                color: Colors.black,
-                size: 30,
-              ),
-              activeIcon: Icon(
-                Icons.home,
-                color: Colors.blue[600],
-                size: 30,
-              ),
-              label: ("Trang chủ"),
-              backgroundColor: Colors.white),
-          BottomNavigationBarItem(
-              icon: const Icon(
-                Icons.calendar_month,
-                color: Colors.black,
-                size: 30,
-              ),
-              activeIcon: Icon(
-                Icons.calendar_month,
-                color: Colors.blue[600],
-                size: 30,
-              ),
-              label: ("Lịch hẹn"),
-              backgroundColor: Colors.white),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.black,
-              size: 30,
-            ),
-            activeIcon: Icon(
-              Icons.notifications,
-              color: Colors.blue[600],
-              size: 30,
-            ),
-            label: ("Thông báo"),
-            backgroundColor: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        extendBody: true,
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: ElevatedButton(
+          style: const ButtonStyle(
+              minimumSize: MaterialStatePropertyAll(Size(80, 80)),
+              shape: MaterialStatePropertyAll(CircleBorder())),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const QRScanning();
+            }));
+          },
+          child: const Icon(
+            Icons.qr_code_scanner_outlined,
+            size: 40,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.person,
-              color: Colors.black,
-              size: 30,
-            ),
-            activeIcon: Icon(
-              Icons.person,
-              color: Colors.blue[600],
-              size: 30,
-            ),
-            label: ("Cá nhân"),
-            backgroundColor: Colors.white,
+        ),
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomAppBar(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          elevation: 0,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: BottomNavigationBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            unselectedIconTheme:
+                const IconThemeData(color: Colors.black, size: 40),
+            showUnselectedLabels: false,
+            selectedFontSize: 20,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.blue[600],
+            iconSize: 40,
+            onTap: _onItemTapped,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home_filled,
+                ),
+                label: ("Trang chủ"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.calendar_month,
+                ),
+                label: ("Lịch hẹn"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.calendar_month,
+                  color: Colors.white,
+                  size: 0,
+                ),
+                label: (""),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.notifications,
+                ),
+                label: ("Thông báo"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: ("Cá nhân"),
+              ),
+            ],
           ),
-        ],
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[600],
-        iconSize: 40,
-        onTap: _onItemTapped,
-        elevation: 5,
+        ),
       ),
     );
   }

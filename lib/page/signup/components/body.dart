@@ -23,10 +23,16 @@ class _BodyState extends State<Body> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/images/logo1.png", height: 100,color: Colors.blue,),
-                  const SizedBox(width: 10,),
-                  Column(
-                    children: const [
+                  Image.asset(
+                    "assets/images/logo1.png",
+                    height: 100,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Column(
+                    children: [
                       Text(
                         "SSKĐT",
                         style: TextStyle(
@@ -34,11 +40,12 @@ class _BodyState extends State<Body> {
                             color: Colors.blue,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Text(
                         "Sổ sức khỏe điện tử",
-                        style:
-                        TextStyle(fontSize: 16, color: Colors.blue),
+                        style: TextStyle(fontSize: 16, color: Colors.blue),
                       ),
                     ],
                   )

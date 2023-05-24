@@ -6,11 +6,11 @@ class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: 50.0),
+        padding: EdgeInsets.only(top: 50.0),
         child: Column(
-          children: const [
+          children: [
             SignInForm(),
           ],
         ),

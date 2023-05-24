@@ -1,6 +1,8 @@
+import 'package:electronic_health_app/page/navigation_bar.dart';
 import 'package:electronic_health_app/page/splash_page/page.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -83,8 +85,13 @@ class _SplashState extends State<Splash> {
                               textStyle: const TextStyle(fontSize: 18),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, SignInPage.routeName);
+                              if (FirebaseAuth.instance.currentUser != null) {
+                                Navigator.pushNamed(
+                                    context, MyNavigationBar.routeName);
+                              } else {
+                                Navigator.pushNamed(
+                                    context, SignInPage.routeName);
+                              }
                             },
                             child: const Text('Đăng nhập'),
                           ),

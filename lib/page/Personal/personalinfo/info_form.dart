@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:electronic_health_app/models/province_api.dart';
@@ -10,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 import '../../../model/validator.dart';
 
@@ -35,17 +35,11 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
   final _formKey = GlobalKey<FormState>();
   Image? image;
   String? imagepath;
+  bool imageVerified = true;
 
   List<Province> provinces = [];
   int? _selectedProvince;
   int? _selectedDistrict;
-
-  void onAddedImage(Image addedImage, String path) {
-    image = addedImage;
-    image = Image(width: 150, image: addedImage.image, fit: BoxFit.contain);
-    imagepath = path;
-    setState(() {});
-  }
 
   void checkIfSaved() async {
     var uid = FirebaseAuth.instance.currentUser!.uid;
@@ -63,18 +57,47 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
       _district.text = data['district'];
       _ward.text = data['ward'];
       _address.text = data['address'];
+
+      _selectedProvince =
+          provinces.indexWhere((element) => element.name == _province.text);
+      _selectedDistrict = provinces[_selectedProvince!]
+          .districs
+          .indexWhere((element) => element.name == _district.text);
     }
-    FirebaseStorage.instance
-        .ref('user/$uid/info.png')
-        .getData()
-        .then((value) => value != null ? image = Image.memory(value) : {});
+    FirebaseStorage.instance.ref('user/$uid/info.png').getData().then((value) {
+      value != null ? image = Image.memory(value) : {};
+      setState(() {});
+    });
+  }
+
+  void onAddedImage(InputImage? inputImage, String? path) {
+    if (inputImage != null) {
+      image = Image.memory(inputImage.bytes!, width: 150, fit: BoxFit.contain);
+      if (path != null) {
+        imagepath = path;
+      }
+      verifyImage(inputImage);
+      setState(() {});
+    }
+  }
+
+  void verifyImage(InputImage inputImage) async {
+    final options = FaceDetectorOptions();
+    final faceDetector = FaceDetector(options: options);
+
+    List<Face> faces = await faceDetector.processImage(inputImage);
+
+    faces.isNotEmpty ? imageVerified = true : imageVerified = false;
+
     setState(() {});
+
+    faceDetector.close();
   }
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Province.getAllProvinces().then((value) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Province.getAllProvinces().then((value) {
         setState(() {
           provinces = value;
         });
@@ -106,13 +129,33 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
         child: Column(children: [
           Expanded(
               child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8),
                   child: ListView(shrinkWrap: true, children: [
-                    InfoAvatar(image),
+                    FormField(
+                        initialValue: image,
+                        validator: (value) {
+                          if (!imageVerified) {
+                            return 'Ảnh không hợp lệ, chọn ảnh có đầy đủ khuôn mặt';
+                          }
+                          return null;
+                        },
+                        builder: (field) {
+                          return Column(children: [
+                            InfoAvatar(image, imageVerified),
+                            if (!field.validate() || !imageVerified)
+                              Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: Text(
+                                    field.errorText!,
+                                    style: const TextStyle(color: Colors.red),
+                                  ))
+                          ]);
+                        }),
                     PickImageMenu(onAddedImage),
                     requiredText("Họ và tên"),
                     TextFormField(
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _fullname,
                       decoration: inputDecoration(hintText: "Họ và tên"),
                     ),
@@ -140,14 +183,14 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                     sexSelections(),
                     requiredText("Số điện thoại"),
                     TextFormField(
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _mobile,
                       keyboardType: TextInputType.phone,
                       decoration: inputDecoration(hintText: ""),
                     ),
                     requiredText("Số hộ chiếu/CMND/CCCD"),
                     TextFormField(
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _id,
                       keyboardType: TextInputType.phone,
                       decoration: inputDecoration(),
@@ -176,7 +219,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                         _province.text = value[0];
                       }),
                       keyboardType: TextInputType.none,
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _province,
                       decoration: inputDecoration(
                           icon: const Icon(Icons.arrow_drop_down)),
@@ -192,7 +235,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                         _district.text = value[0];
                       }),
                       keyboardType: TextInputType.none,
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _district,
                       decoration: inputDecoration(
                           icon: const Icon(Icons.arrow_drop_down)),
@@ -210,14 +253,14 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                         _ward.text = value[0];
                       }),
                       keyboardType: TextInputType.none,
-                      validator: (value) => Validator.Empty(value),
+                      validator: (value) => Validator.isEmpty(value),
                       controller: _ward,
                       decoration: inputDecoration(
                           icon: const Icon(Icons.arrow_drop_down)),
                     ),
                     requiredText("Thôn/Xóm/Số nhà"),
                     TextFormField(
-                        validator: (value) => Validator.Empty(value),
+                        validator: (value) => Validator.isEmpty(value),
                         controller: _address,
                         decoration: inputDecoration())
                   ]))),
@@ -234,6 +277,11 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       save();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          duration: Duration(milliseconds: 500),
+                          content: Text(
+                              'Thông tin không hợp lệ,vui lòng kiểm tra lại')));
                     }
                   },
                   child: const Text("Lưu thông tin",
@@ -245,7 +293,6 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List<Widget>.generate(3, (index) {
-          var genders = ['Nữ', 'Nam', 'Khác'];
           return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Radio(
                 value: index,
@@ -254,7 +301,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
                   _selectedGender = value!;
                   setState(() {});
                 }),
-            Text(genders[index])
+            Text(['Nữ', 'Nam', 'Khác'][index])
           ]);
         }));
   }
@@ -292,6 +339,10 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
       'district': _district.text,
       'ward': _ward.text,
       'address': _address.text,
+    }).whenComplete(() {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          duration: Duration(milliseconds: 500),
+          content: Text('Lưu thành công')));
     });
     if (image != null && imagepath != null) {
       FirebaseStorage.instance
