@@ -18,6 +18,7 @@ class MyNavigationBar extends StatefulWidget {
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
   int _selectedIndex = 0;
+
   final List<Widget?> _widgetOptions = [
     const HomePage(),
     const CalendarPage(),

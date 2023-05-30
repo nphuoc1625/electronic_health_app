@@ -10,9 +10,9 @@ class ChooseFromList extends StatelessWidget {
       itemBuilder: (context, index) {
         return TextButton(
             onPressed: () {
-              Navigator.pop(context, [_lists[index].name, index]);
+              Navigator.pop(context, [_lists[index].observerName, index]);
             },
-            child: Text(_lists[index].name));
+            child: Text(_lists[index].observerName));
       },
     );
   }

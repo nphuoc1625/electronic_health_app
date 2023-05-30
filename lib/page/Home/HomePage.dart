@@ -1,3 +1,5 @@
+import 'package:electronic_health_app/models/global_user_info.dart';
+import 'package:electronic_health_app/models/observer_pattern.dart';
 import 'package:electronic_health_app/page/Home/Components/category_home.dart';
 import 'package:electronic_health_app/page/Home/Components/information_home.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +11,26 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomepageState();
 }
 
-class _HomepageState extends State<HomePage> {
-  String name = 'Trần Hoài Sơn';
+class _HomepageState extends State<HomePage> implements Observer {
+  @override
+  String observerName = 'homepage';
 
+  String username = '';
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      setState(() {
+        username = GlobalUserInfo.instance.info.fullName;
+      });
+    });
+    GlobalUserInfo.instance.registerObserver(this);
+  }
+
+  @override
+  void dispose() {
+    GlobalUserInfo.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
@@ -39,7 +55,7 @@ class _HomepageState extends State<HomePage> {
                   ),
                 ),
                 title: Text(
-                  'Hello $name',
+                  'Hello $username',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -70,5 +86,14 @@ class _HomepageState extends State<HomePage> {
             ],
           ),
         ));
+  }
+
+  @override
+  void whenNotified() {
+    if (mounted) {
+      username = GlobalUserInfo.instance.info.fullName;
+      setState(() {});
+      debugPrint("notified $observerName");
+    }
   }
 }

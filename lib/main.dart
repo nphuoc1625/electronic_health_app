@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         TestResultPage.routeName: (context) => const TestResultPage(),
         PersonalInfo.routeName: (context) => const PersonalInfo(),
         ChangePasswordPage.routeName: (context) => const ChangePasswordPage(),
-        PlacesArrived.routeName: (context) => const PlacesArrived()
+        PlacesArrivedPage.routeName: (context) => const PlacesArrivedPage()
       },
       home: const Splash(),
     );

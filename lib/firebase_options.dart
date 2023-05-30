@@ -57,7 +57,8 @@ class DefaultFirebaseOptions {
     appId: '1:462260908466:android:a3e5099eb1debb5b4034ab',
     messagingSenderId: '462260908466',
     projectId: 'electronichealthapp',
-    databaseURL: 'https://electronichealthapp-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://electronichealthapp-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'electronichealthapp.appspot.com',
   );
 }

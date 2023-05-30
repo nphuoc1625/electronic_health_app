@@ -14,7 +14,8 @@ class CalendarPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(20.0),
                 child: Text(
-                  'Lịch hẹn',style: TextStyle(fontSize: 22,color: Colors.white),
+                  'Lịch hẹn',
+                  style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
               ),
               Expanded(
@@ -23,7 +24,7 @@ class CalendarPage extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   child: Container(
-                    padding: const EdgeInsets.only(top:30),
+                    padding: const EdgeInsets.only(top: 30),
                     color: Colors.grey[200],
                     child: Column(
                       children: [
@@ -35,9 +36,11 @@ class CalendarPage extends StatelessWidget {
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(top:10),
-                          child: Text("Rất tiếc, chưa có dữ liệu hiển thị",
-                            style: TextStyle(fontSize: 16),),
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            "Rất tiếc, chưa có dữ liệu hiển thị",
+                            style: TextStyle(fontSize: 16),
+                          ),
                         )
                       ],
                     ),
@@ -45,9 +48,7 @@ class CalendarPage extends StatelessWidget {
                 ),
               ),
             ],
-          )
-
-      ),
+          )),
     );
   }
 }

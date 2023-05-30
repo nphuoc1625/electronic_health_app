@@ -56,26 +56,11 @@ class _TestResultPageState extends State<TestResultPage> {
           style: TextStyle(fontSize: 20),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: ListView(
-            children: const [
-              Text(
-                textAlign: TextAlign.center,
-                "Khuyến cáo: khai báo thông tin sai sự thật là vi"
-                " phạm pháp luật Việt Nam và có thể xử lý hình sự",
-                style: TextStyle(color: Colors.red, fontSize: 16),
-                maxLines: 2,
-              ),
-              SizedBox(height: 20),
-              TestResultForm(),
-            ],
-          ),
-        ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: const TestResultForm(),
       ),
     );
   }

@@ -1,7 +1,7 @@
-import 'package:electronic_health_app/model/user.dart';
-import 'package:electronic_health_app/model/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../models/validator.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -191,7 +191,7 @@ class _SignUpFormState extends State<SignUpForm> {
       if (credential.user != null && mounted) {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text("Đăng ký thành công")));
-        Navigator.pop(context, MyUser(email.text, password.text));
+        Navigator.pop(context, [email.text, password.text]);
       }
     } catch (e) {
       ScaffoldMessenger.of(context)

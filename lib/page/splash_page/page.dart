@@ -26,7 +26,10 @@ class Page1 extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60.0),
-            Image.asset(image,height: 450,),
+            Image.asset(
+              image,
+              height: 450,
+            ),
             const SizedBox(
               height: 80,
             ),

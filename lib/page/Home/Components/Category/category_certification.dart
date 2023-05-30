@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:electronic_health_app/models/global_user_info.dart';
+import 'package:electronic_health_app/models/observer_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class CategoryCertification extends StatefulWidget {
   static String routeName = "/certification";
@@ -10,39 +11,35 @@ class CategoryCertification extends StatefulWidget {
   State<CategoryCertification> createState() => _CategoryCertificationState();
 }
 
-class _CategoryCertificationState extends State<CategoryCertification> {
+class _CategoryCertificationState extends State<CategoryCertification>
+    implements Observer {
   var _birthday = '';
   var _name = '';
   var _id = '';
-  var _vaccineState = "BẠN CHƯA TIÊM MŨI NÀO";
-  void getData() {
-    String uid = FirebaseAuth.instance.currentUser!.uid;
+  var _numberOfVaccines = 0;
+  var _qrData = '';
 
-    //Vaccine
-    FirebaseDatabase.instance.ref('user/$uid/vaccine').get().then((value) {
-      if (value.exists && value.children.isNotEmpty) {
-        setState(() {
-          _vaccineState = 'ĐÃ TIÊM ${value.children.length} MŨI VẮC XIN';
-        });
-      }
-    });
-
-    //info
-    FirebaseDatabase.instance.ref('user/$uid/info').get().then((value) {
-      if (value.exists) {
-        Map data = value.value as Map;
-        _name = data['fullname'];
-        _birthday = data['birthday'];
-        _id = data['id'];
-        setState(() {});
-      }
+  void updateData() {
+    setState(() {
+      _numberOfVaccines = GlobalUserInfo.instance.vaccines.length;
+      _name = GlobalUserInfo.instance.info.fullName;
+      _birthday = GlobalUserInfo.instance.info.birthday;
+      _id = GlobalUserInfo.instance.info.id;
+      _qrData = GlobalUserInfo.instance.vaccinesToString();
     });
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    updateData();
+    GlobalUserInfo.instance.registerObserver(this);
+  }
+
+  @override
+  void dispose() {
+    GlobalUserInfo.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
@@ -87,7 +84,9 @@ class _CategoryCertificationState extends State<CategoryCertification> {
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
-                  _vaccineState,
+                  _numberOfVaccines > 0
+                      ? "ĐÃ TIÊM $_numberOfVaccines MŨI VACCINE"
+                      : "BẠN CHƯA TIÊM MŨI NÀO",
                   style: const TextStyle(
                       fontSize: 25,
                       color: Colors.white,
@@ -105,9 +104,9 @@ class _CategoryCertificationState extends State<CategoryCertification> {
                   width: 160.0,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    child: Image.asset(
-                      'assets/images/code_certification.jpg',
-                      fit: BoxFit.cover,
+                    child: QrImage(
+                      data: _qrData,
+                      backgroundColor: Colors.white,
                     ),
                   ),
                 ),
@@ -181,7 +180,11 @@ class _CategoryCertificationState extends State<CategoryCertification> {
                               horizontal: 50, vertical: 16),
                           textStyle: const TextStyle(fontSize: 20),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            updateData();
+                          });
+                        },
                         child: const Text('Cập nhật thông tin tiêm'),
                       ),
                     ],
@@ -227,5 +230,13 @@ class _CategoryCertificationState extends State<CategoryCertification> {
             ]),
           )
         ]));
+  }
+
+  @override
+  String observerName = "certification";
+
+  @override
+  whenNotified() {
+    updateData();
   }
 }

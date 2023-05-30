@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:electronic_health_app/models/province_api.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/TestResult/components/pickimage_menu.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/components/avatar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/components/listpopup.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/components/personalinfo_style.dart';
@@ -11,7 +11,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
-import '../../../model/validator.dart';
+import '../../../models/validator.dart';
+import 'components/pickimage_menu.dart';
 
 class PersonalInfoForm extends StatefulWidget {
   const PersonalInfoForm({super.key});
@@ -70,28 +71,32 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     });
   }
 
-  void onAddedImage(InputImage? inputImage, String? path) {
-    if (inputImage != null) {
-      image = Image.memory(inputImage.bytes!, width: 150, fit: BoxFit.contain);
-      if (path != null) {
-        imagepath = path;
-      }
-      verifyImage(inputImage);
-      setState(() {});
+  void onAddedImage(XFile file) async {
+    debugPrint((file).path);
+
+    if (!await verifyImage(InputImage.fromFilePath(file.path))) {
+      imageVerified = false;
+    } else {
+      image = Image.memory(await file.readAsBytes(),
+          width: 150, fit: BoxFit.contain);
+      imagepath = file.path;
+      imageVerified = true;
     }
+
+    setState(() {});
   }
 
-  void verifyImage(InputImage inputImage) async {
+  Future<bool> verifyImage(InputImage inputImage) async {
     final options = FaceDetectorOptions();
     final faceDetector = FaceDetector(options: options);
 
     List<Face> faces = await faceDetector.processImage(inputImage);
-
-    faces.isNotEmpty ? imageVerified = true : imageVerified = false;
-
-    setState(() {});
-
     faceDetector.close();
+
+    if (faces.isNotEmpty) {
+      return true;
+    }
+    return false;
   }
 
   @override

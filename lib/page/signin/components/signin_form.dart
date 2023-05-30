@@ -1,11 +1,12 @@
-import 'package:electronic_health_app/model/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:electronic_health_app/page/signup/signuppage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:electronic_health_app/model/user.dart';
 import 'package:electronic_health_app/page/navigation_bar.dart';
+
+import '../../../models/global_user_info.dart';
+import '../../../models/validator.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -229,12 +230,12 @@ class _SignInFormState extends State<SignInForm> {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        Navigator.pushNamed(context, SignUpPage.routeName)
+                        Navigator.pushNamed<List<String>>(
+                                context, SignUpPage.routeName)
                             .then((value) {
                           if (value != null) {
-                            MyUser user = value as MyUser;
-                            _username.text = user.email;
-                            _password.text = user.pass;
+                            _username.text = value[0];
+                            _password.text = value[1];
                           }
                         });
                       },
@@ -259,20 +260,22 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  void onclickLogin(BuildContext context) async {
-    try {
-      UserCredential credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _username.text, password: _password.text);
-      if (credential.user != null && mounted) {
+  void onclickLogin(BuildContext context) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: _username.text, password: _password.text)
+        .then((value) {
+      if (value.user != null && mounted) {
         if (_save) {
           saveUser();
         } else {
           deleteUser();
         }
+        GlobalUserInfo.instance;
         Navigator.pushNamed(context, MyNavigationBar.routeName);
       }
-    } catch (e) {
+    }).onError((error, stackTrace) {
+      debugPrint('error  $error');
       if (mounted) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
@@ -282,6 +285,6 @@ class _SignInFormState extends State<SignInForm> {
           )),
         );
       }
-    }
+    });
   }
 }

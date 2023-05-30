@@ -153,7 +153,7 @@ class _PersonalPageState extends State<PersonalPage> {
                         ],
                       ),
                       onPressed: () =>
-                          Navigator.pushNamed(context, PlacesArrived.routeName),
+                          Navigator.pushNamed(context, PlacesArrivedPage.routeName),
                     ),
                     divider(context),
                     TextButton(

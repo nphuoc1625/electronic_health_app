@@ -1,12 +1,10 @@
-import 'package:electronic_health_app/page/Personal/personalinfo/takepicture.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PickImageMenu extends StatefulWidget {
   const PickImageMenu(this.onAddedImage, {super.key});
 
-  final Function(InputImage inputImage, String? path) onAddedImage;
+  final void Function(XFile image) onAddedImage;
 
   @override
   State<PickImageMenu> createState() => _PickImageMenuState();
@@ -17,7 +15,7 @@ class _PickImageMenuState extends State<PickImageMenu> {
     ImagePicker picker = ImagePicker();
     picker.pickImage(source: source, maxWidth: 1080).then((value) async {
       if (value != null) {
-        widget.onAddedImage(InputImage.fromFilePath(value.path), value.path);
+        widget.onAddedImage(value);
       }
     });
   }
@@ -33,15 +31,7 @@ class _PickImageMenuState extends State<PickImageMenu> {
           children: [
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute<InputImage>(
-                  builder: (context) {
-                    return const TakeFacePicture();
-                  },
-                )).then((value) {
-                  if (value != null) {
-                    widget.onAddedImage(value, null);
-                  }
-                });
+                _pickImage(ImageSource.camera, context);
               },
               child: const Column(
                 children: [Icon(Icons.camera_alt), Text("Chụp ảnh")],
