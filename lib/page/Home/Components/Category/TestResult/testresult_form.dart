@@ -40,28 +40,27 @@ class _TestResultFormState extends State<TestResultForm> {
     'Genexpert'
   ];
 
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //Check if User had data
-      getData();
-    });
-    super.initState();
+  fetch() async {
+    TestResult? data = GlobalUserInfo.instance.testResult;
+    if (data != null) {
+      _testType.text = data.type;
+      _result.text = data.result;
+
+      _date.text = data.time.split(' ')[0];
+      _time.text = data.time.split(' ')[1];
+
+      var imageData = await FirebaseStorage.instance
+          .ref('user/${GlobalUserInfo.instance.uid}/testresult_image.png')
+          .getData();
+      addedImages = Image.memory(imageData!);
+      setState(() {});
+    }
   }
 
-  getData() async {
-    TestResult data = GlobalUserInfo.instance.testResult;
-    _testType.text = data.type;
-    _result.text = data.result;
-
-    _date.text = data.time.split(' ')[0];
-    _time.text = data.time.split(' ')[1];
-
-    var imageData = await FirebaseStorage.instance
-        .ref('user/${GlobalUserInfo.instance.uid}/testresult_image.png')
-        .getData();
-    addedImages = Image.memory(imageData!);
-    setState(() {});
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    fetch();
   }
 
   @override
@@ -71,29 +70,6 @@ class _TestResultFormState extends State<TestResultForm> {
     _date.dispose();
     _result.dispose();
     super.dispose();
-  }
-
-  void save() async {
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-    TestResult result = TestResult(
-        type: _testType.text,
-        time: '${_date.text} ${_time.text}',
-        result: _result.text);
-    await FirebaseDatabase.instance
-        .ref('user/$uid/test-result')
-        .update(result.toMap());
-
-    if (imagepath != null) {
-      await FirebaseStorage.instance
-          .ref('user/$uid/testresult_image.png')
-          .putFile(File(imagepath!));
-    }
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Đã lưu'),
-        duration: Duration(seconds: 2),
-      ));
-    }
   }
 
   void onAddedImage(XFile image) async {
@@ -313,5 +289,28 @@ class _TestResultFormState extends State<TestResultForm> {
         ],
       ),
     );
+  }
+
+  void save() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    TestResult result = TestResult(
+        type: _testType.text,
+        time: '${_date.text} ${_time.text}',
+        result: _result.text);
+    await FirebaseDatabase.instance
+        .ref('user/$uid/test-result')
+        .update(result.toMap());
+
+    if (imagepath != null) {
+      await FirebaseStorage.instance
+          .ref('user/$uid/testresult_image.png')
+          .putFile(File(imagepath!));
+    }
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Đã lưu'),
+        duration: Duration(seconds: 2),
+      ));
+    }
   }
 }

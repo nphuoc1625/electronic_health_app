@@ -32,12 +32,37 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
   final TextEditingController _ans3 = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void fetch() {
+    Declaration? declaration = GlobalUserInfo.instance.declaration;
+    if (declaration != null) {
+      if (declaration.ans1.isNotEmpty) {
+        _ans1.text = declaration.ans1;
+        _question1 = Question1.yes;
+      }
+      if (declaration.ans2.isNotEmpty) {
+        _ans2.text = declaration.ans2;
+        _question2 = Question2.yes;
+      }
+      if (declaration.ans3.isNotEmpty) {
+        _ans3.text = declaration.ans3;
+        _question3 = Question3.yes;
+      }
+      setState(() {});
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    fetch();
+    super.didChangeDependencies();
+  }
+
   @override
   void dispose() {
     _ans1.dispose();
     _ans2.dispose();
     _ans3.dispose();
-
     super.dispose();
   }
 
@@ -89,14 +114,14 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                       }),
                   (_question1 == Question1.yes)
                       ? TextFormField(
-                          validator:(value){
-                            if(_question1 == Question1.yes) {
+                          validator: (value) {
+                            if (_question1 == Question1.yes) {
                               return Validator.isEmpty(value);
                             }
                             return null;
                           },
-                          decoration:
-                              const InputDecoration(border: OutlineInputBorder()),
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
                           controller: _ans1,
                         )
                       : null,
@@ -128,14 +153,14 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                   ),
                   (_question2 == Question2.yes)
                       ? TextFormField(
-                    validator:(value) {
-                      if(_question2 == Question2.yes) {
-                        return Validator.isEmpty(value);
-                      }
-                      return null;
-                    },
-                          decoration:
-                              const InputDecoration(border: OutlineInputBorder()),
+                          validator: (value) {
+                            if (_question2 == Question2.yes) {
+                              return Validator.isEmpty(value);
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
                           controller: _ans2,
                         )
                       : null,
@@ -165,14 +190,14 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                   ),
                   (_question3 == Question3.yes)
                       ? TextFormField(
-                       validator:(value){
-                         if(_question3 == Question3.yes) {
-                           return Validator.isEmpty(value);
-                         }
-                         return null;
-                       },
-                          decoration:
-                              const InputDecoration(border: OutlineInputBorder()),
+                          validator: (value) {
+                            if (_question3 == Question3.yes) {
+                              return Validator.isEmpty(value);
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
                           controller: _ans3,
                         )
                       : null,
@@ -197,7 +222,7 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 100, vertical: 16),
                           textStyle: const TextStyle(fontSize: 20)),
-                      onPressed:  onPress,
+                      onPressed: onPress,
                       child: const Text('Gửi tờ khai')),
                 ),
                 const SizedBox(height: 15)
@@ -208,14 +233,17 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
   }
 
   void onPress() {
-    if(_formKey.currentState!.validate()){
-      FirebaseDatabase.instance.ref('user').child(GlobalUserInfo.instance.uid).child('declaration')
-          .set(
-        Declaration( ans1: _ans1.text,ans2: _ans2.text,ans3: _ans3.text ).toMap()
-      ).then((value) {
+    if (_formKey.currentState!.validate()) {
+      FirebaseDatabase.instance
+          .ref('user')
+          .child(GlobalUserInfo.instance.uid!)
+          .child('declaration')
+          .set(Declaration(ans1: _ans1.text, ans2: _ans2.text, ans3: _ans3.text)
+              .toMap())
+          .then((value) {
         //if from scan return true if success else return null
-        if(ModalRoute.of(context)?.settings.arguments == 'fromScan'){
-          Navigator.pop(context,true);
+        if (ModalRoute.of(context)?.settings.arguments == 'fromScan') {
+          Navigator.pop(context, true);
         }
       });
     }

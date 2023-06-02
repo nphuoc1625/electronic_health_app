@@ -1,5 +1,4 @@
 import 'package:electronic_health_app/models/global_user_info.dart';
-import 'package:electronic_health_app/models/observer_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -11,34 +10,35 @@ class CategoryCertification extends StatefulWidget {
   State<CategoryCertification> createState() => _CategoryCertificationState();
 }
 
-class _CategoryCertificationState extends State<CategoryCertification>
-    implements Observer {
+class _CategoryCertificationState extends State<CategoryCertification> {
   var _birthday = '';
   var _name = '';
   var _id = '';
   var _numberOfVaccines = 0;
   var _qrData = '';
 
-  void updateData() {
-    setState(() {
-      _numberOfVaccines = GlobalUserInfo.instance.vaccines.length;
-      _name = GlobalUserInfo.instance.info.fullName;
-      _birthday = GlobalUserInfo.instance.info.birthday;
-      _id = GlobalUserInfo.instance.info.id;
-      _qrData = GlobalUserInfo.instance.vaccinesToString();
-    });
+  void fetch() {
+    _numberOfVaccines = GlobalUserInfo.instance.vaccines!.length;
+    _name = GlobalUserInfo.instance.info!.fullName;
+    _birthday = GlobalUserInfo.instance.info!.birthday;
+    _id = GlobalUserInfo.instance.info!.id;
+    _qrData = GlobalUserInfo.instance.vaccinesToString();
+    if (mounted) setState(() {});
   }
 
   @override
   void initState() {
+    fetch();
     super.initState();
-    updateData();
-    GlobalUserInfo.instance.registerObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
   void dispose() {
-    GlobalUserInfo.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -181,9 +181,7 @@ class _CategoryCertificationState extends State<CategoryCertification>
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          setState(() {
-                            updateData();
-                          });
+                          fetch();
                         },
                         child: const Text('Cập nhật thông tin tiêm'),
                       ),
@@ -230,13 +228,5 @@ class _CategoryCertificationState extends State<CategoryCertification>
             ]),
           )
         ]));
-  }
-
-  @override
-  String observerName = "certification";
-
-  @override
-  whenNotified() {
-    updateData();
   }
 }

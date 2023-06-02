@@ -1,3 +1,4 @@
+import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
@@ -14,9 +15,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  GlobalUserInfo.instance;
+  Future.delayed(
+    Duration(seconds: 3),
+    () {
+      runApp(const MyApp());
+    },
   );
 }
 

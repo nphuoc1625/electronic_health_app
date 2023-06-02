@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/models/province_api.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/components/avatar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/components/listpopup.dart';
@@ -44,11 +45,11 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
 
   void checkIfSaved() async {
     var uid = FirebaseAuth.instance.currentUser!.uid;
-    DatabaseReference ref = FirebaseDatabase.instance.ref('user/$uid/info');
-    DataSnapshot snapshot = await ref.get();
-    if (snapshot.exists) {
-      var data = snapshot.value as Map;
-      _fullname.text = data['fullname'];
+    Info? snapshot = GlobalUserInfo.instance.info;
+    if (snapshot != null) {
+      var data = snapshot.toMap();
+      print(data);
+      _fullname.text = data['fullName'];
       _date.text = data['birthday'];
       _selectedGender = data['gender'];
       _id.text = data['id'];

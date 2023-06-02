@@ -21,15 +21,13 @@ class _HomepageState extends State<HomePage> implements Observer {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        username = GlobalUserInfo.instance.info.fullName;
+        username = GlobalUserInfo.instance.info!.fullName;
       });
     });
-    GlobalUserInfo.instance.registerObserver(this);
   }
 
   @override
   void dispose() {
-    GlobalUserInfo.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -91,7 +89,7 @@ class _HomepageState extends State<HomePage> implements Observer {
   @override
   void whenNotified() {
     if (mounted) {
-      username = GlobalUserInfo.instance.info.fullName;
+      username = GlobalUserInfo.instance.info!.fullName;
       setState(() {});
       debugPrint("notified $observerName");
     }

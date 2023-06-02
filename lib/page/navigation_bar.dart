@@ -37,7 +37,6 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        extendBody: true,
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: ElevatedButton(

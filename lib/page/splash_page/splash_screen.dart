@@ -18,8 +18,13 @@ class _SplashState extends State<Splash> {
   final PageController _controller = PageController();
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (FirebaseAuth.instance.currentUser != null) {
+        Navigator.pushNamed(context, MyNavigationBar.routeName);
+      }
+    });
   }
 
   // This widget is the root of your application.

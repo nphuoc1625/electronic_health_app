@@ -1,3 +1,4 @@
+import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/page/Personal/changepassword/changepasswordpage.dart';
 import 'package:electronic_health_app/page/Personal/myqrcode.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
@@ -18,14 +19,7 @@ class PersonalPage extends StatefulWidget {
 class _PersonalPageState extends State<PersonalPage> {
   String username = '';
   getUsername() {
-    String uid = FirebaseAuth.instance.currentUser!.uid;
-    FirebaseDatabase.instance
-        .ref('user/$uid/info/fullname')
-        .get()
-        .then((value) {
-      username = value.value as String;
-      setState(() {});
-    });
+    username = GlobalUserInfo.instance.info!.fullName;
   }
 
   @override
@@ -152,8 +146,8 @@ class _PersonalPageState extends State<PersonalPage> {
                               color: Colors.black, size: 30)
                         ],
                       ),
-                      onPressed: () =>
-                          Navigator.pushNamed(context, PlacesArrivedPage.routeName),
+                      onPressed: () => Navigator.pushNamed(
+                          context, PlacesArrivedPage.routeName),
                     ),
                     divider(context),
                     TextButton(

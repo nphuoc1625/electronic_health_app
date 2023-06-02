@@ -49,8 +49,8 @@ class _QRScanningState extends State<QRScanning> {
                   scanWindow: Rect.fromCenter(
                       center: Offset(MediaQuery.of(context).size.width / 2,
                           MediaQuery.of(context).size.height / 2),
-                      width: 400,
-                      height: 400),
+                      width: 300,
+                      height: 300),
                   controller: _controller,
                   onDetect: (capture) => _handleQRCode(capture)),
               const Align(
@@ -67,8 +67,8 @@ class _QRScanningState extends State<QRScanning> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                         Container(
-                            width: 400,
-                            height: 400,
+                            width: 300,
+                            height: 300,
                             decoration: BoxDecoration(
                                 border:
                                     Border.all(width: 3, color: Colors.white)))
@@ -106,7 +106,7 @@ class _QRScanningState extends State<QRScanning> {
   }
 
   _handleQRCode(BarcodeCapture capture) async {
-    if (handlingResult ) return;
+    if (handlingResult) return;
     handlingResult = true;
 
     final Barcode barcode = capture.barcodes[0];
@@ -127,12 +127,12 @@ class _QRScanningState extends State<QRScanning> {
                     ),
                     Text('Đã khai báo')
                   ]));
-                }).then((value)  {
-              handlingResult =false;
+                }).then((value) {
+              handlingResult = false;
               Navigator.pop(context);
             });
           })
-        : await showQRValue(barcode).then((value) => handlingResult =false);
+        : await showQRValue(barcode).then((value) => handlingResult = false);
   }
 
   String? verifyBarcode(Barcode barcode) {
@@ -151,27 +151,27 @@ class _QRScanningState extends State<QRScanning> {
     bool? result = true;
 
     if (GlobalUserInfo.instance.declaration == null) {
+      debugPrint("declaration != null");
       result = await waitForUserToDeclare();
     }
-
     //if User Complete Declare
     if (result != null) {
-      String uid = GlobalUserInfo.instance.uid;
+      String uid = GlobalUserInfo.instance.uid!;
       await declareToPlaceId(id, uid);
       await saveArrivedLocation(id, uid);
     }
   }
 
   Future<void> declareToPlaceId(String id, String uid) async {
-    FirebaseDatabase.instance
-        .ref("declaration/$id/peoples-arrived/$uid")
-        .set({'declaration': GlobalUserInfo.instance.declaration!.toMap(), 'time': DateTime.now().toIso8601String()});
+    FirebaseDatabase.instance.ref("places/$id/peoples-arrived/$uid").set({
+      'declaration': GlobalUserInfo.instance.declaration!.toMap(),
+      'time': DateTime.now().toIso8601String()
+    });
   }
 
   Future<void> saveArrivedLocation(String id, String uid) async {
-    var geolocation = await FirebaseDatabase.instance
-        .ref('declaration/$id/geolocation')
-        .get();
+    var geolocation =
+        await FirebaseDatabase.instance.ref('places/$id/geolocation').get();
     DateTime now = DateTime.now();
     var date = '${now.year}-${now.month}-${now.day}';
 
@@ -180,12 +180,11 @@ class _QRScanningState extends State<QRScanning> {
         .child(date)
         .child(id)
         .set({
-      'time':now.toIso8601String(),
+      'time': now.toIso8601String(),
       'geolocation': geolocation.value as Map,
       'declaration': GlobalUserInfo.instance.declaration!.toMap()
     });
   }
-
 
   Future<bool?> waitForUserToDeclare() async {
     final result = await Navigator.pushNamed(
