@@ -1,6 +1,6 @@
 import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
-import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived.dart';
+import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -172,15 +172,18 @@ class _QRScanningState extends State<QRScanning> {
   Future<void> saveArrivedLocation(String id, String uid) async {
     var geolocation =
         await FirebaseDatabase.instance.ref('places/$id/geolocation').get();
+    var locationName =
+        await FirebaseDatabase.instance.ref('places/$id/name').get();
     DateTime now = DateTime.now();
     var date = '${now.year}-${now.month}-${now.day}';
-
+    var time = '${now.hour}:${now.minute}';
     await FirebaseDatabase.instance
         .ref('user/$uid/places-arrived')
-        .child(date)
+        .child('$date ${now.weekday}')
         .child(id)
         .set({
-      'time': now.toIso8601String(),
+      'name': locationName.value,
+      'time': time,
       'geolocation': geolocation.value as Map,
       'declaration': GlobalUserInfo.instance.declaration!.toMap()
     });

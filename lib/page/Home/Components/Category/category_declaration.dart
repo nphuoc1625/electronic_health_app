@@ -112,96 +112,86 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           _question1 = value;
                         });
                       }),
-                  (_question1 == Question1.yes)
-                      ? TextFormField(
-                          validator: (value) {
-                            if (_question1 == Question1.yes) {
-                              return Validator.isEmpty(value);
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder()),
-                          controller: _ans1,
-                        )
-                      : null,
+                  Visibility(
+                    visible: (_question1 == Question1.yes) ? true : false,
+                    child: TextFormField(
+                      validator: (value) {
+                        return Validator.isEmpty(value);
+                      },
+                      decoration:
+                          const InputDecoration(border: OutlineInputBorder()),
+                      controller: _ans1,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 itemContainer(
-                  'Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện ít nhất'
-                  '1 trong các dấu hiệu: sốt, ho, khó thở, viêm phổi, đau'
-                  'họng, mệt mỏi không?',
-                  Radio<Question2>(
-                    value: Question2.no,
-                    groupValue: _question2,
-                    onChanged: (Question2? value) {
-                      setState(() {
-                        _question2 = value;
-                      });
-                    },
-                  ),
-                  Radio<Question2>(
-                    value: Question2.yes,
-                    groupValue: _question2,
-                    onChanged: (Question2? value) {
-                      setState(() {
-                        _question2 = value;
-                      });
-                    },
-                  ),
-                  (_question2 == Question2.yes)
-                      ? TextFormField(
+                    'Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện ít nhất'
+                    '1 trong các dấu hiệu: sốt, ho, khó thở, viêm phổi, đau'
+                    'họng, mệt mỏi không?',
+                    Radio<Question2>(
+                      value: Question2.no,
+                      groupValue: _question2,
+                      onChanged: (Question2? value) {
+                        setState(() {
+                          _question2 = value;
+                        });
+                      },
+                    ),
+                    Radio<Question2>(
+                      value: Question2.yes,
+                      groupValue: _question2,
+                      onChanged: (Question2? value) {
+                        setState(() {
+                          _question2 = value;
+                        });
+                      },
+                    ),
+                    Visibility(
+                        visible: (_question2 == Question2.yes) ? true : false,
+                        child: TextFormField(
                           validator: (value) {
-                            if (_question2 == Question2.yes) {
-                              return Validator.isEmpty(value);
-                            }
-                            return null;
+                            return Validator.isEmpty(value);
                           },
                           decoration: const InputDecoration(
                               border: OutlineInputBorder()),
                           controller: _ans2,
-                        )
-                      : null,
-                ),
+                        ))),
                 const SizedBox(
                   height: 20,
                 ),
                 itemContainer(
-                  'Trong vòng 14 ngày qua, Anh/Chị có tiếp xúc với người bệnh hoặc nghi ngờ mắc bệnh COVID-19, người từ nước ngoài có bệnh COVID 19',
-                  Radio<Question3>(
-                    value: Question3.no,
-                    groupValue: _question3,
-                    onChanged: (Question3? value) {
-                      setState(() {
-                        _question3 = value;
-                      });
-                    },
-                  ),
-                  Radio<Question3>(
-                    value: Question3.yes,
-                    groupValue: _question3,
-                    onChanged: (Question3? value) {
-                      setState(() {
-                        _question3 = value;
-                      });
-                    },
-                  ),
-                  (_question3 == Question3.yes)
-                      ? TextFormField(
+                    'Trong vòng 14 ngày qua, Anh/Chị có tiếp xúc với người bệnh hoặc nghi ngờ mắc bệnh COVID-19, người từ nước ngoài có bệnh COVID 19',
+                    Radio<Question3>(
+                      value: Question3.no,
+                      groupValue: _question3,
+                      onChanged: (Question3? value) {
+                        setState(() {
+                          _question3 = value;
+                        });
+                      },
+                    ),
+                    Radio<Question3>(
+                      value: Question3.yes,
+                      groupValue: _question3,
+                      onChanged: (Question3? value) {
+                        setState(() {
+                          _question3 = value;
+                        });
+                      },
+                    ),
+                    Visibility(
+                        visible: (_question3 == Question3.yes) ? true : false,
+                        child: TextFormField(
                           validator: (value) {
-                            if (_question3 == Question3.yes) {
-                              return Validator.isEmpty(value);
-                            }
-                            return null;
+                            return Validator.isEmpty(value);
                           },
                           decoration: const InputDecoration(
                               border: OutlineInputBorder()),
                           controller: _ans3,
-                        )
-                      : null,
-                ),
+                        ))),
                 const SizedBox(
                   height: 15,
                 ),
@@ -222,7 +212,7 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 100, vertical: 16),
                           textStyle: const TextStyle(fontSize: 20)),
-                      onPressed: onPress,
+                      onPressed: () => onPress(),
                       child: const Text('Gửi tờ khai')),
                 ),
                 const SizedBox(height: 15)
@@ -233,24 +223,27 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
   }
 
   void onPress() {
-    if (_formKey.currentState!.validate()) {
-      FirebaseDatabase.instance
-          .ref('user')
-          .child(GlobalUserInfo.instance.uid!)
-          .child('declaration')
-          .set(Declaration(ans1: _ans1.text, ans2: _ans2.text, ans3: _ans3.text)
-              .toMap())
-          .then((value) {
-        //if from scan return true if success else return null
-        if (ModalRoute.of(context)?.settings.arguments == 'fromScan') {
-          Navigator.pop(context, true);
-        }
-      });
-    }
+    if (!_formKey.currentState!.validate()) return;
+    var a1 = '', a2 = '', a3 = '';
+    if (_question1 == Question1.yes) a1 = _ans1.text;
+    if (_question2 == Question2.yes) a2 = _ans2.text;
+    if (_question3 == Question3.yes) a3 = _ans3.text;
+
+    FirebaseDatabase.instance
+        .ref('user')
+        .child(GlobalUserInfo.instance.uid!)
+        .child('declaration')
+        .set(Declaration(ans1: a1, ans2: a2, ans3: a3).toMap())
+        .then((value) {
+      //if from scan return true if success else return null
+      if (ModalRoute.of(context)?.settings.arguments == 'fromScan') {
+        Navigator.pop(context, true);
+      }
+    });
   }
 
   Widget itemContainer(
-      String title, Radio radio1, Radio radio2, TextFormField? answer) {
+      String title, Radio radio1, Radio radio2, Visibility visibility) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: boxDecoration,
@@ -274,7 +267,7 @@ class _CategoryDeclarationState extends State<CategoryDeclaration> {
               ),
             ],
           ),
-          answer ?? Container()
+          visibility
         ],
       ),
     );

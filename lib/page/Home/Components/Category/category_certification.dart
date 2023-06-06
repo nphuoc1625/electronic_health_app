@@ -47,15 +47,6 @@ class _CategoryCertificationState extends State<CategoryCertification> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[800],
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: const Text(
           "Chứng nhận ngừa Covid",
           style: TextStyle(

@@ -21,15 +21,11 @@ class _PlacesArrivedPageState extends State<PlacesArrivedPage> {
         .then((snapshot) {
       if (snapshot.exists) {
         listDates = snapshot.children
-            .map((e) => ArrivedByDate(e.key!, _buildPlacesList(e)))
+            .map((date) => ArrivedByDate.fromSnapShot(date))
             .toList();
         setState(() {});
       }
     });
-  }
-
-  List<PlacesArrived> _buildPlacesList(DataSnapshot date) {
-    return date.children.map((e) => PlacesArrived.fromDS(e)).toList();
   }
 
   @override
@@ -45,11 +41,7 @@ class _PlacesArrivedPageState extends State<PlacesArrivedPage> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-              leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back)),
+              backgroundColor: Colors.blue[900],
               title: const Text('Nơi đã đến '),
               actions: [
                 TextButton.icon(
@@ -66,37 +58,37 @@ class _PlacesArrivedPageState extends State<PlacesArrivedPage> {
                       size: 30,
                     ))
               ]),
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: listDates.isNotEmpty
-                ? ListView.builder(
+          body: listDates.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
                     itemCount: listDates.length,
                     itemBuilder: (context, index) {
                       return _dateItems(listDates[index]);
                     },
-                  )
-                : const Center(
-                    child: Text(
-                    'Chưa có khai báo nào',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  )),
-          )),
+                  ),
+                )
+              : const Center(
+                  child: Text(
+                  'Chưa có khai báo nào',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ))),
     );
   }
 
   Widget _dateItems(ArrivedByDate arrivedByDate) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              arrivedByDate.date,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          ...dateChildren(arrivedByDate.placesArrived)
-        ],
+    return Card(
+      child: ExpansionTile(
+        tilePadding: const EdgeInsets.all(8.0),
+        backgroundColor: Colors.blue[100],
+        collapsedBackgroundColor: Colors.blue[400],
+        initiallyExpanded: true,
+        textColor: Colors.blue[900],
+        title: Text(
+          '${arrivedByDate.date} (${arrivedByDate.weekDay})',
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        children: [...dateChildren(arrivedByDate.placesArrived)],
       ),
     );
   }
@@ -104,10 +96,25 @@ class _PlacesArrivedPageState extends State<PlacesArrivedPage> {
   List<Widget> dateChildren(List<PlacesArrived> places) {
     return List<Widget>.generate(
         places.length,
-        (index) => Row(
-              children: [
-                Text('\u2022 ${places[index].locationId}'),
-              ],
+        (index) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${places[index].time}: ',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Flexible(
+                    child: Text(
+                      maxLines: 4,
+                      '${places[index].name} ',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ],
+              ),
             ));
   }
 }

@@ -50,11 +50,7 @@ class InformationHome extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          container(
-              context,
-              () => Navigator.pushNamed(context, CovidData.routeName),
-              'Phản ánh tiêm chủng',
-              Icons.feedback,
+          container(context, () {}, 'Phản ánh tiêm chủng', Icons.feedback,
               Colors.red),
           const SizedBox(
             height: 12,

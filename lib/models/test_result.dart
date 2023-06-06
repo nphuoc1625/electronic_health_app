@@ -40,9 +40,9 @@ class Vaccine {
 
   @override
   String toString() {
-    return 'Mũi thứ : $numberTh'
-        'Tên vaccine: $name'
-        'Ngày tiêm: $date'
+    return 'Mũi thứ : $numberTh \n'
+        'Tên vaccine: $name  \n'
+        'Ngày tiêm: $date  \n'
         'Nơi tiêm: $place';
   }
 

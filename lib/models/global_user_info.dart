@@ -70,7 +70,7 @@ class GlobalUserInfo {
       return vaccines!.fold(
           '',
           (previousValue, element) =>
-              previousValue += '\n ${element.toString()}');
+              previousValue += ' ${element.toString()} \n\n');
     }
     return '';
   }

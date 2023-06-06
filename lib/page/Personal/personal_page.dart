@@ -2,10 +2,9 @@ import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/page/Personal/changepassword/changepasswordpage.dart';
 import 'package:electronic_health_app/page/Personal/myqrcode.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
-import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived.dart';
+import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived_page.dart';
 import 'package:electronic_health_app/page/signin/signinpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter/material.dart';
 

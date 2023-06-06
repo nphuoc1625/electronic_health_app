@@ -4,7 +4,7 @@ import 'package:electronic_health_app/page/Home/Components/Category/category_dec
 import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresultpage.dart';
 import 'package:electronic_health_app/page/Personal/changepassword/changepasswordpage.dart';
-import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived.dart';
+import 'package:electronic_health_app/page/Personal/places_arrived/places_arrived_page.dart';
 import 'package:electronic_health_app/page/navigation_bar.dart';
 import 'package:electronic_health_app/page/Personal/personalinfo/info_page.dart';
 import 'package:electronic_health_app/page/splash_page/splash_screen.dart';
@@ -20,12 +20,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   GlobalUserInfo.instance;
-  Future.delayed(
-    Duration(seconds: 3),
-    () {
-      runApp(const MyApp());
-    },
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

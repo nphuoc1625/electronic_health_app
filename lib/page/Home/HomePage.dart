@@ -1,7 +1,7 @@
 import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:electronic_health_app/models/observer_pattern.dart';
 import 'package:electronic_health_app/page/Home/Components/category_home.dart';
-import 'package:electronic_health_app/page/Home/Components/information_home.dart';
+import 'package:electronic_health_app/page/Home/Components/home_actions.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

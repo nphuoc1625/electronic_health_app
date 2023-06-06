@@ -48,7 +48,6 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     Info? snapshot = GlobalUserInfo.instance.info;
     if (snapshot != null) {
       var data = snapshot.toMap();
-      print(data);
       _fullname.text = data['fullName'];
       _date.text = data['birthday'];
       _selectedGender = data['gender'];
@@ -335,7 +334,7 @@ class _PersonalInfoFormState extends State<PersonalInfoForm> {
     var uid = FirebaseAuth.instance.currentUser!.uid;
     DatabaseReference ref = FirebaseDatabase.instance.ref('user/$uid/info');
     ref.update({
-      'fullname': _fullname.text,
+      'fullName': _fullname.text,
       'birthday': _date.text,
       'gender': _selectedGender,
       'mobile': _mobile.text,
