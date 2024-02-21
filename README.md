@@ -1,4 +1,6 @@
-# electronic_health_app
+# Đồ án Flutter - Sổ sức khỏe điện tử
+
+Giới thiệu chung: 
 
 Package used in this project: 
   qr_flutter: ^4.0.0
