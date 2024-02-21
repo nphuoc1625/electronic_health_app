@@ -121,7 +121,8 @@ class _PersonalPageState extends State<PersonalPage> {
                         ],
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, PersonalInfo.routeName);
+                        Navigator.pushNamed(
+                            context, PersonalInfoPage.routeName);
                       },
                     ),
                     divider(context),

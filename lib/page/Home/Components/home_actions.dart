@@ -1,6 +1,5 @@
+import 'package:electronic_health_app/page/Home/Components/covid_data_page.dart';
 import 'package:flutter/material.dart';
-
-import 'coviddata.dart';
 
 class InformationHome extends StatelessWidget {
   const InformationHome({
@@ -56,8 +55,8 @@ class InformationHome extends StatelessWidget {
             height: 12,
           ),
           container(context, () {
-            Navigator.pushNamed(context, CovidData.routeName,
-                arguments: CovidData.coviddata);
+            Navigator.pushNamed(context, CovidDataPage.routeName,
+                arguments: CovidDataPage.coviddata);
           }, 'Dữ liệu Covid-19', Icons.bar_chart_outlined, Colors.orange),
         ],
       )),

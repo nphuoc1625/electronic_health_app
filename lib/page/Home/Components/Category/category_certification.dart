@@ -2,15 +2,15 @@ import 'package:electronic_health_app/models/global_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class CategoryCertification extends StatefulWidget {
+class CertificationPage extends StatefulWidget {
   static String routeName = "/certification";
-  const CategoryCertification({Key? key}) : super(key: key);
+  const CertificationPage({Key? key}) : super(key: key);
 
   @override
-  State<CategoryCertification> createState() => _CategoryCertificationState();
+  State<CertificationPage> createState() => _CertificationPageState();
 }
 
-class _CategoryCertificationState extends State<CategoryCertification> {
+class _CertificationPageState extends State<CertificationPage> {
   var _birthday = '';
   var _name = '';
   var _id = '';

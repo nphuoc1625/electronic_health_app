@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/global_user_info.dart';
 
-class CategoryDeclaration extends StatefulWidget {
+class DeclarationPage extends StatefulWidget {
   static String routeName = "/declaration";
-  const CategoryDeclaration({Key? key}) : super(key: key);
+  const DeclarationPage({Key? key}) : super(key: key);
 
   @override
-  State<CategoryDeclaration> createState() => _CategoryDeclarationState();
+  State<DeclarationPage> createState() => _DeclarationPageState();
 }
 
 // ignore: constant_identifier_names
@@ -22,7 +22,7 @@ enum Question2 { no, yes }
 // ignore: constant_identifier_names
 enum Question3 { no, yes }
 
-class _CategoryDeclarationState extends State<CategoryDeclaration> {
+class _DeclarationPageState extends State<DeclarationPage> {
   Question1? _question1 = Question1.no;
   Question2? _question2 = Question2.no;
   Question3? _question3 = Question3.no;

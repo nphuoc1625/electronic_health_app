@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'info_form.dart';
 
-class PersonalInfo extends StatelessWidget {
-  const PersonalInfo({super.key});
+class PersonalInfoPage extends StatelessWidget {
+  const PersonalInfoPage({super.key});
   static String routeName = '/personalinfo';
   @override
   Widget build(BuildContext context) {

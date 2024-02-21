@@ -1,5 +1,4 @@
 import 'package:electronic_health_app/page/Home/Components/Category/TestResult/testresultpage.dart';
-import 'package:electronic_health_app/page/Home/Components/Category/category_certification.dart';
 import 'package:electronic_health_app/page/Home/Components/Category/category_declaration.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +61,7 @@ class CategoryHome extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, CertificationPage.routeName);
+              Navigator.pushNamed(context, DeclarationPage.routeName);
             },
             child: Container(
               padding: const EdgeInsets.all(16),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:web_browser/web_browser.dart';
 
-class CovidData extends StatelessWidget {
-  const CovidData({super.key});
+class CovidDataPage extends StatelessWidget {
+  const CovidDataPage({super.key});
   static String routeName = "/coviddata";
   static String coviddata = 'https://covid19.ncsc.gov.vn/dulieu';
   @override

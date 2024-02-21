@@ -1,4 +1,4 @@
-import 'package:electronic_health_app/page/Home/Components/coviddata.dart';
+import 'package:electronic_health_app/page/Home/Components/covid_data_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/mynotification.dart';
@@ -26,7 +26,7 @@ class NotificationPage extends StatelessWidget {
           }
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, CovidData.routeName,
+              Navigator.pushNamed(context, CovidDataPage.routeName,
                   arguments:
                       'https://expressjs.com/en/starter/hello-world.html');
             },
